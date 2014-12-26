@@ -7,8 +7,8 @@
 sudo dnf erase -y abrt* bijiben cheese devassistant empathy evolution gnome-boxes gnome-clocks gnome-documents java* libreoffice* orca rhythmbox transmission-gtk
 #
 ## enable moar repos
-sudo dnf copr enable dgoerger/firefox-gtk3
-sudo dnf copr enable petersen/pandoc
+sudo dnf copr enable -y dgoerger/firefox-gtk3
+sudo dnf copr enable -y petersen/pandoc
 sudo yum-config-manager --add-repo=http://negativo17.org/repos/fedora-handbrake.repo
 sudo dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-21.noarch.rpm
 #
@@ -61,7 +61,6 @@ gtk-application-prefer-dark-theme=1" > $HOME/.config/gtk-3.0/settings.ini  # gtk
 dconf write /org/gnome/shell/enabled-extensions "['alternate-tab@gnome-shell-extensions.gcampax.github.com']"  # alt-tab to switch windows not apps
 dconf write /org/gnome/terminal/legacy/dark-theme true
 dconf write /org/gnome/terminal/legacy/default-show-menubar false
-dconf write /org/gnome/terminal/legacy/new-terminal-mode "tab"
 #
 ## firefox tweaks
 sudo dnf install -y mozilla-https-everywhere mozilla-noscript
