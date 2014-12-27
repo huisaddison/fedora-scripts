@@ -38,6 +38,9 @@ echo 'set nocompatible
 filetype off
 syntax on
 au BufReadCmd   *.epub      call zip#Browse(expand("<amatch>"))' > $HOME/.vimrc
+echo 'caption always
+termcapinfo xterm*|rxvt*|kterm*|Eterm*|putty*|dtterm* ti@:te@
+defscrollback 20736' > $HOME/.screenrc
 #
 ## media libs
 sudo dnf install -y gstreamer1-libav gstreamer1-plugins-ugly gstreamer1-plugins-bad-freeworld \
@@ -59,20 +62,25 @@ mkdir -p $HOME/.config/gtk-3.0
 echo "[Settings]
 gtk-application-prefer-dark-theme=1" > $HOME/.config/gtk-3.0/settings.ini  # gtk3 dark theme
 dconf write /org/gnome/shell/enabled-extensions "['alternate-tab@gnome-shell-extensions.gcampax.github.com']"  # alt-tab to switch windows not apps
-dconf write /org/gnome/terminal/legacy/dark-theme true
+dconf write /org/gnome/terminal/legacy/dark-theme true  # dark by default in 3.14 ?
 dconf write /org/gnome/terminal/legacy/default-show-menubar false
+dconf write /org/gnome/settings-daemon/peripherals/touchpad/natural-scroll true  # Mac-style scrolling
+dconf write /org/gnome/settings-daemon/peripherals/touchpad/tap-to-click true
+dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'us+mac')]"
 #
 ## firefox tweaks
 sudo dnf install -y mozilla-https-everywhere mozilla-noscript
-sudo echo 'pref("browser.showQuitWarning", true);' >> /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js  # neuter 'ctrl+q'
-sudo echo 'pref("browser.newtabpage.directory.ping", "");' >> /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js
-sudo echo 'pref("browser.newtabpage.directory.source", "");' >> /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js  # turn off sponsored tiles
-sudo echo 'pref("noscript.global", true);' >> /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js  # set NoScript to global allow
-sudo echo 'pref("noscript.ctxMenu", false);' >> /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js  # disable NoScript context menu
+echo 'pref("browser.showQuitWarning", true);' | sudo tee --append /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js >> /dev/null  # neuter 'ctrl+q'
+echo 'pref("browser.newtabpage.directory.ping", "");' | sudo tee --append /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js >> /dev/null
+echo 'pref("browser.newtabpage.directory.source", "");' | sudo tee --append /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js >> /dev/null  # turn off sponsored tiles
+### TODO: how do we set extension prefs?
+#echo 'user_pref("noscript.global", true);' | sudo tee --append /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js >> /dev/null  # set NoScript to global allow
+#echo 'user_pref("noscript.ctxMenu", false);' | sudo tee --append /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js  # disable NoScript context menu
 #
 ## set locale
-localectl set-locale "LANG=en_CA.UTF-8" 
-localectl set-keymap us-mac
+dconf write /system/locale/region "'en_CA.UTF-8'"
+localectl set-locale LANG=en_CA.UTF-8  # TODO: insufficient
+localectl set-x11-keymap us-mac mac  # redundant from dconf setting? probably not since dconf is per user
 #
 ## games
 sudo dnf install -y 0ad
