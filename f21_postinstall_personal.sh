@@ -1,5 +1,5 @@
 #!/bin/bash
-# from a fresh Fedora 21 Workstation install; not for already-in-use systems
+# for a fresh Fedora 21 Workstation install; do not use on already-in-use systems
 
 ### remove stuff I don't need
 sudo dnf erase -y abrt* bijiben cheese devassistant empathy evolution gnome-boxes gnome-clocks gnome-documents java* libreoffice* orca rhythmbox transmission-gtk
@@ -36,9 +36,9 @@ sudo systemctl enable powertop.service
 sudo dnf install -y git lynx pandoc screen transmission-cli vim-enhanced
 # sane vimrc
 echo 'set nocompatible
-filetype off
-syntax on
-au BufReadCmd   *.epub      call zip#Browse(expand("<amatch>"))' > $HOME/.vimrc
+syntax on' > $HOME/.vimrc
+# recognize epubs as zips for editing in vim
+echo 'au BufReadCmd   *.epub      call zip#Browse(expand("<amatch>"))' >> $HOME/.vimrc
 # sane screenrc
 echo 'caption always
 termcapinfo xterm*|rxvt*|kterm*|Eterm*|putty*|dtterm* ti@:te@
