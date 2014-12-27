@@ -124,26 +124,6 @@ select {
 	color: black;
 	-moz-appearance: none !important;
 }
-/* input[type="radio"],
-input[type="checkbox"] {
-	border: 2px inset white ! important;
-	background-color: white ! important;
-	color: ThreeDFace ! important;
-	-moz-appearance: none !important;
-}
-*|*::-moz-radio {
-	background-color: white;
-	-moz-appearance: none !important;
-}
-button,
-input[type="reset"],
-input[type="button"],
-input[type="submit"] {
-	border: 2px outset white;
-	background-color: #eeeeee;
-	color: black;
-	-moz-appearance: none !important;
-} */
 body {
 	background-color: white;
 	color: black;
