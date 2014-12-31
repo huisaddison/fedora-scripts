@@ -68,7 +68,8 @@ mkdir -p $HOME/.config/gtk-3.0
 echo '[Settings]
 gtk-application-prefer-dark-theme=1' > $HOME/.config/gtk-3.0/settings.ini
 # enable the alternate-tab extension we just installed
-dconf write /org/gnome/shell/enabled-extensions "['alternate-tab@gnome-shell-extensions.gcampax.github.com']"  # alt-tab to switch windows not apps
+# sets alt-tab on windows, not applications
+dconf write /org/gnome/shell/enabled-extensions "['alternate-tab@gnome-shell-extensions.gcampax.github.com']"
 # set Terminal dark theme. is this redundant? dark seems the default in 3.14?
 dconf write /org/gnome/terminal/legacy/dark-theme true
 # hide Terminal menu bar
@@ -77,23 +78,32 @@ dconf write /org/gnome/terminal/legacy/default-show-menubar false
 dconf write /org/gnome/settings-daemon/peripherals/touchpad/natural-scroll true  # Mac-style scrolling
 dconf write /org/gnome/settings-daemon/peripherals/touchpad/tap-to-click true
 
+### moar dconf tweaks
+# shotwell
+dconf write /org/yorba/shotwell/preferences/files/commit-metadata true
+dconf write /org/yorba/shotwell/preferences/files/use-lowercase-filenames true
+dconf write /org/yorba/shotwell/preferences/ui/use-24-hour-time true
+dconf write /org/yorba/shotwell/preferences/ui/hide-photos-already-imported true
+
 ### firefox tweaks
-## global settings
+## global extensions
 sudo dnf install -y mozilla-https-everywhere mozilla-noscript
-# neuter the hazard of 'ctrl+q'
-echo 'pref("browser.showQuitWarning", true);' | sudo tee --append /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js >> /dev/null
-# disable 'sponsored tiles'
-echo 'pref("browser.newtabpage.directory.ping", "");' | sudo tee --append /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js >> /dev/null
-echo 'pref("browser.newtabpage.directory.source", "");' | sudo tee --append /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js >> /dev/null
-# set DONOTTRACK header
-echo 'pref("privacy.donottrackheader.enabled", true);' | sudo tee --append /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js >> /dev/null
-# set spellcheck language as Canadian English moz#836230
-echo 'pref("spellchecker.dictionary", "en_CA");' | sudo tee --append /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js >> /dev/null
-## local settings
+## local settings - set here to survive upgrades and not disturb other user accounts
+## TODO: is there a /usr/lib64/firefox/.../defaults/user.js file we can set these 
+##       in for global default prefs which survive upgrades?
 # create local profile
 firefox -CreateProfile default >> /dev/null
 # grab firefox profile name
 FF=`grep Path .mozilla/firefox/profiles.ini | sed 's/Path\=//'`
+# neuter the hazard of 'ctrl+q'
+echo 'user_pref("browser.showQuitWarning", true);' | tee --append $HOME/.mozilla/firefox/${FF}/prefs.js >> /dev/null
+# disable 'sponsored tiles'
+echo 'user_pref("browser.newtabpage.directory.ping", "");' | tee --append $HOME/.mozilla/firefox/${FF}/prefs.js >> /dev/null
+echo 'user_pref("browser.newtabpage.directory.source", "");' | tee --append $HOME/.mozilla/firefox/${FF}/prefs.js >> /dev/null
+# set DONOTTRACK header
+echo 'user_pref("privacy.donottrackheader.enabled", true);' | tee --append $HOME/.mozilla/firefox/${FF}/prefs.js >> /dev/null
+# set spellcheck language as Canadian English moz#836230
+echo 'user_pref("spellchecker.dictionary", "en_CA");' | tee --append $HOME/.mozilla/firefox/${FF}/prefs.js >> /dev/null
 # sane Firefox NoScript settings
 echo 'user_pref("noscript.global", true);' | tee --append $HOME/.mozilla/firefox/${FF}/prefs.js >> /dev/null
 echo 'user_pref("noscript.ctxMenu", false);' | tee --append $HOME/.mozilla/firefox/${FF}/prefs.js >> /dev/null
