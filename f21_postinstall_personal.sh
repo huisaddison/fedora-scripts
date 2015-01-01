@@ -43,6 +43,19 @@ echo 'au BufReadCmd   *.epub      call zip#Browse(expand("<amatch>"))' >> $HOME/
 echo 'caption always
 termcapinfo xterm*|rxvt*|kterm*|Eterm*|putty*|dtterm* ti@:te@
 defscrollback 20736' > $HOME/.screenrc
+# sanitize bash_profile $PATH to disallow ~/bin and ~/.local/bin
+echo '# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
+PATH=$PATH
+
+export PATH' > $HOME/.bash_profile
 
 ### media libs
 sudo dnf install -y gstreamer1-libav gstreamer1-plugins-ugly gstreamer1-plugins-bad-freeworld \
