@@ -170,18 +170,30 @@ sudo dnf install -y 0ad
 # sudo dnf install -y steam
 
 ### Netflix Google Chrome app - workaround until moz#1089858
+# add Google Chrome repo
+echo '[google-chrome]
+name=google-chrome
+baseurl=http://dl.google.com/linux/chrome/rpm/stable/x86_64
+enabled=1
+gpgcheck=0' | sudo tee /etc/yum.repos.d/google-chrome.repo >> /dev/null
+# install Chrome
+sudo dnf install -y google-chrome
+# disable regular Chrome desktop file
+echo "NoDisplay=true" | sudo tee --append /usr/share/applications/google-chrome.desktop
+# add desktop file
 mkdir -p $HOME/.local/share/applications
 echo "[Desktop Entry]
 Version=1.0
 Name=Netflix
-GenericName=Web Browser
-Comment=Access the Internet
+GenericName=Netflix
+Comment=Watch Netflix
 Exec=/usr/bin/google-chrome-stable --app=https://netflix.com %U
 Terminal=false
 Icon=$HOME/.local/share/icons/netflix.png
 Type=Application" | tee $HOME/.local/share/applications/netflix.desktop
+# add icon
 mkdir -p $HOME/.local/share/icons
-## TODO: curl netflix.png
+curl -o $HOME/.local/share/icons/netflix.png https://gist.github.com/dgoerger/4c0e5df0ef6b09e3c0f5/raw/5900ccec25e4c7d3bc64478292241e90047fb24e/netflix.png
 
 ### now reboot to save and load changes
 reboot
