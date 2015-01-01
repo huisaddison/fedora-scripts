@@ -155,6 +155,9 @@ dconf write /org/gnome/desktop/datetime/automatic-timezone true
 
 ### games - quite large
 sudo dnf install -y 0ad
+## steam - pulls in all the 32bit libs which is super gross
+# sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-21.noarch.rpm
+# sudo dnf install steam
 
 ### now reboot to save and load changes
 reboot
