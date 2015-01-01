@@ -169,5 +169,19 @@ sudo dnf install -y 0ad
 # sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-21.noarch.rpm
 # sudo dnf install -y steam
 
+### Netflix Google Chrome app - workaround until moz#1089858
+mkdir -p $HOME/.local/share/applications
+echo "[Desktop Entry]
+Version=1.0
+Name=Netflix
+GenericName=Web Browser
+Comment=Access the Internet
+Exec=/usr/bin/google-chrome-stable --app=https://netflix.com %U
+Terminal=false
+Icon=$HOME/.local/share/icons/netflix.png
+Type=Application" | tee $HOME/.local/share/applications/netflix.desktop
+mkdir -p $HOME/.local/share/icons
+## TODO: curl netflix.png
+
 ### now reboot to save and load changes
 reboot
