@@ -2,7 +2,7 @@
 # for a fresh Fedora 21 Workstation install; do not use on already-in-use systems
 
 ### remove stuff I don't need
-sudo dnf erase -y abrt* bijiben cheese devassistant empathy evolution gnome-boxes gnome-clocks gnome-documents java* libreoffice* orca rhythmbox transmission-gtk
+sudo dnf erase -y abrt* bijiben cheese devassistant evolution gnome-boxes gnome-clocks gnome-documents java* libreoffice* orca rhythmbox transmission-gtk
 
 ### enable moar repos
 sudo dnf copr enable -y dgoerger/firefox-gtk3
@@ -58,7 +58,7 @@ sudo dnf install -y vim-latex vim-latex-doc texlive-collection-basic texlive-col
                     texlive-collection-latexrecommended texlive-luatex texlive-xetex
 
 ### general apps
-sudo dnf install -y calibre deja-dup epiphany firewalld geary gnome-contacts gnome-music \
+sudo dnf install -y calibre deja-dup empathy epiphany firewalld geary gnome-contacts gnome-music \
                     gnome-weather gnumeric keepassx shotwell 
 
 ### GNOME tweaks
