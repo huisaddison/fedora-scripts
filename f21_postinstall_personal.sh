@@ -95,7 +95,7 @@ sudo dnf install -y mozilla-https-everywhere mozilla-noscript
 # create local profile
 firefox -CreateProfile default >> /dev/null
 # grab firefox profile name
-FF=`grep Path .mozilla/firefox/profiles.ini | sed 's/Path\=//'`
+FF=`grep Path $HOME/.mozilla/firefox/profiles.ini | sed 's/Path\=//'`
 # neuter the hazard of 'ctrl+q'
 echo 'user_pref("browser.showQuitWarning", true);' | tee --append $HOME/.mozilla/firefox/${FF}/prefs.js >> /dev/null
 # disable 'sponsored tiles'
