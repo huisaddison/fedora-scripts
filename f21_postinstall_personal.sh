@@ -51,11 +51,7 @@ if [ -f ~/.bashrc ]; then
 	. ~/.bashrc
 fi
 
-# User specific environment and startup programs
-
-PATH=$PATH
-
-export PATH' > $HOME/.bash_profile
+# User specific environment and startup programs' > $HOME/.bash_profile
 
 ### media libs
 sudo dnf install -y gstreamer1-libav gstreamer1-plugins-ugly gstreamer1-plugins-bad-freeworld \
