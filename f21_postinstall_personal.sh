@@ -56,7 +56,7 @@ sudo dnf install -y vim-latex vim-latex-doc texlive-collection-basic texlive-col
                     texlive-collection-fontsrecommended texlive-collection-langfrench \
                     texlive-collection-langgerman texlive-collection-langspanish \
                     texlive-collection-latexrecommended texlive-luatex texlive-xetex \
-                    texlive-collection-langgreek
+                    texlive-collection-langgreek texlive-collection-langenglish
 
 ### general apps
 sudo dnf install -y calibre deja-dup empathy epiphany firewalld geary gnome-contacts gnome-music \
