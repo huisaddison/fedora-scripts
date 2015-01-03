@@ -7,7 +7,6 @@ sudo dnf erase -y abrt* bijiben cheese devassistant evolution gnome-documents ja
 ### enable moar repos
 sudo dnf copr enable -y dgoerger/firefox-gtk3
 sudo dnf copr enable -y petersen/pandoc
-#sudo yum-config-manager --add-repo=http://negativo17.org/repos/fedora-handbrake.repo
 sudo dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-21.noarch.rpm
 
 ### make sure everything's up-to-date
@@ -62,7 +61,13 @@ rpmdev-setuptree
 
 ### media libs
 sudo dnf install -y gstreamer1-libav gstreamer1-plugins-ugly gstreamer1-plugins-bad-freeworld \
-                    gstreamer1-plugins-bad-free #HandBrake-cli
+                    gstreamer1-plugins-bad-free
+
+### HandBrake
+## libdvdnav doesn't seem to work with totem? workaround:
+## HandBrakeCLI -Z "Normal" -i /dev/sr0 -o $NAME.mp4 -t $NUM
+# sudo yum-config-manager --add-repo=http://negativo17.org/repos/fedora-handbrake.repo
+# sudo dnf install HandBrake-cli
 
 ### spellcheck dictionaries
 sudo dnf install -y hunspell-en hunspell-es hunspell-de hunspell-fr hunspell-nn
