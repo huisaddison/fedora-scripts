@@ -2,12 +2,12 @@
 # for a fresh Fedora 21 Workstation install; do not use on already-in-use systems
 
 ### remove stuff I don't need
-sudo dnf erase -y abrt* bijiben cheese devassistant evolution gnome-boxes gnome-clocks gnome-documents java* libreoffice* orca rhythmbox transmission-gtk
+sudo dnf erase -y abrt* bijiben cheese devassistant evolution gnome-documents java* libreoffice* orca rhythmbox transmission-gtk
 
 ### enable moar repos
 sudo dnf copr enable -y dgoerger/firefox-gtk3
 sudo dnf copr enable -y petersen/pandoc
-sudo yum-config-manager --add-repo=http://negativo17.org/repos/fedora-handbrake.repo
+#sudo yum-config-manager --add-repo=http://negativo17.org/repos/fedora-handbrake.repo
 sudo dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-21.noarch.rpm
 
 ### make sure everything's up-to-date
@@ -15,20 +15,21 @@ sudo dnf upgrade -y
 
 ### install drivers things
 sudo dnf install -y mesa-vdpau-drivers libva-vdpau-driver libvdpau-va-gl powertop redshift
-mkdir -p $HOME/.config/autostart
-# set redshift autostart since `systemctl --user enable redshift.service` doesn't work rhbz#1174024
-echo '[Desktop Entry]
-Name=redshift
-GenericName=Redshift
-Comment=Shift it red yo
-Exec=redshift -l 41.3:-72.9  # New Haven, CT; geoclue lookup seems broken
-Terminal=false
-Type=Application
-StartupNotify=false
-MimeType=text/plain;
-Icon=redshift
-Categories=GNOME;GTK;Utility
-X-GNOME-FullName=Redshift' > $HOME/.config/autostart/redshift.desktop
+# set redshift DISPLAY variable to built-in monitor per https://bbs.archlinux.org/viewtopic.php?pid=1447538#p1447538
+mkdir -p $HOME/.config/systemd/user/redshift.service.d
+# use DISPLAY=:1 for second display, :2 for third, etc
+echo '[Service]
+Environment=DISPLAY=:0' > $HOME/.config/systemd/user/redshift.service.d/display.conf
+# set redshift location since geoclue lookup relies on Internet which is not initialized in time usually
+echo '; Global settings for redshift
+[redshift]
+location-provider=manual
+
+[manual]
+lat=41.31
+lon=-72.923611' > $HOME/.config/redshift.conf
+# enable redshift service
+systemctl --user enable redshift.service
 # enable powertop service
 sudo systemctl enable powertop.service
 
@@ -53,9 +54,15 @@ fi
 
 # User specific environment and startup programs' > $HOME/.bash_profile
 
+### set up rpmbuild environment
+# per https://fedoraproject.org/wiki/How_to_create_an_RPM_package
+sudo dnf install @Development\ Tools
+sudo dnf install fedora-packager
+rpmdev-setuptree
+
 ### media libs
 sudo dnf install -y gstreamer1-libav gstreamer1-plugins-ugly gstreamer1-plugins-bad-freeworld \
-                    gstreamer1-plugins-bad-free HandBrake-cli
+                    gstreamer1-plugins-bad-free #HandBrake-cli
 
 ### spellcheck dictionaries
 sudo dnf install -y hunspell-en hunspell-es hunspell-de hunspell-fr hunspell-nn
@@ -68,8 +75,9 @@ sudo dnf install -y vim-latex vim-latex-doc texlive-collection-basic texlive-col
                     texlive-collection-langgreek texlive-collection-langenglish
 
 ### general apps
-sudo dnf install -y calibre deja-dup empathy epiphany firewalld geary gnome-contacts gnome-music \
-                    gnome-weather gnumeric keepassx shotwell 
+# TODO: duplicity instead of deja-dup ?
+sudo dnf install -y calibre deja-dup empathy epiphany firewalld gnome-boxes gnome-contacts \
+                    gnome-music gnome-weather gnumeric keepassx shotwell 
 
 ### GNOME tweaks
 sudo dnf install -y gnome-shell-extension-alternate-tab gnome-tweak-tool
@@ -180,8 +188,8 @@ gpgcheck=0' | sudo tee /etc/yum.repos.d/google-chrome.repo >> /dev/null
 sudo dnf install -y google-chrome
 # disable regular Chrome desktop file
 echo "NoDisplay=true" | sudo tee --append /usr/share/applications/google-chrome.desktop
-# add desktop file
-mkdir -p $HOME/.local/share/applications
+# add Netflix desktop file
+sudo mkdir -p /usr/local/share/applications
 echo "[Desktop Entry]
 Version=1.0
 Name=Netflix
@@ -189,11 +197,11 @@ GenericName=Netflix
 Comment=Watch Netflix
 Exec=/usr/bin/google-chrome-stable --app=https://netflix.com %U
 Terminal=false
-Icon=$HOME/.local/share/icons/netflix.png
-Type=Application" | tee $HOME/.local/share/applications/netflix.desktop
+Icon=/usr/local/share/icons/netflix.png
+Type=Application" | sudo tee /usr/local/share/applications/netflix.desktop
 # add icon
-mkdir -p $HOME/.local/share/icons
-curl -o $HOME/.local/share/icons/netflix.png https://gist.github.com/dgoerger/4c0e5df0ef6b09e3c0f5/raw/5900ccec25e4c7d3bc64478292241e90047fb24e/netflix.png
+sudo mkdir -p /usr/local/share/icons
+sudo curl -o /usr/local/share/icons/netflix.png https://gist.github.com/dgoerger/4c0e5df0ef6b09e3c0f5/raw/5900ccec25e4c7d3bc64478292241e90047fb24e/netflix.png
 
 ### now reboot to save and load changes
 reboot
