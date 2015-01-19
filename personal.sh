@@ -56,6 +56,8 @@ fi
 
 # User specific environment and startup programs' | tee $HOME/.bash_profile
 # set git-config
+git config --global user.email "dgoerger@users.noreply.github.com"
+git config --global user.name "David Goerger"
 git config --global push.default simple
 
 ### set up rpmbuild environment
