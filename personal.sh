@@ -59,6 +59,7 @@ fi
 git config --global user.email "dgoerger@users.noreply.github.com"
 git config --global user.name "David Goerger"
 git config --global push.default simple
+git config --global color.ui true
 
 ### set up rpmbuild environment
 # per https://fedoraproject.org/wiki/How_to_create_an_RPM_package
