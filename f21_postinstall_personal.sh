@@ -54,6 +54,8 @@ if [ -f ~/.bashrc ]; then
 fi
 
 # User specific environment and startup programs' | tee $HOME/.bash_profile
+# set git-config
+git config --global push.default simple
 
 ### set up rpmbuild environment
 # per https://fedoraproject.org/wiki/How_to_create_an_RPM_package
