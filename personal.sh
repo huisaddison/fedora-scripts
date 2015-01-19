@@ -6,6 +6,7 @@ sudo dnf erase -y abrt* bijiben cheese devassistant evolution gnome-boxes gnome-
 
 ### enable moar repos
 sudo dnf copr enable -y dgoerger/firefox-gtk3
+sudo dnf copr enable -y dgoerger/mozilla-extensions-test
 sudo dnf copr enable -y petersen/pandoc
 sudo dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-21.noarch.rpm
 # sadly necessary for broadcom-wl...
