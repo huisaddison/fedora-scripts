@@ -61,6 +61,32 @@ read gituser
 git config --global user.email "${gituser}@users.noreply.github.com"
 echo ""
 
+### install bundle
+# you want this
+echo "Installing bundle..."
+gem install bundle
+echo ""
+
+### install ImageMagick
+echo "Installing ImageMagick (for paperclip)..."
+sudo dnf install ImageMagick
+echo ""
+
+### install Atom text editor
+echo "Install Atom (text editor)? y/n"
+read installatom
+if [ ${installatom} == "y" ]; then
+  echo "Installing Atom..."
+  sudo dnf copr enable -y helber/atom
+  sudo dnf install atom
+elif [ ${installatom} == "yes" ]; then
+  echo "Installing Atom..."
+  sudo dnf copr enable -y helber/atom
+  sudo dnf install atom
+else
+  echo "not installing Atom..."
+fi
+
 ### done
 echo "Rails setup complete."
 echo ""
