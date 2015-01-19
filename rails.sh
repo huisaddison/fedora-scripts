@@ -18,6 +18,10 @@ git clone git://github.com/sstephenson/ruby-build.git $HOME/.rbenv/plugins/ruby-
 echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' | tee --append $HOME/.bashrc
 exec $SHELL
 
+### disable building/installing gem docs locally
+# just look it up online
+echo "gem: --no-ri --no-rdoc" | tee --append $HOME/.gemrc
+
 ### build and install Ruby
 rbenv install 2.1.2
 rbenv global 2.1.2
