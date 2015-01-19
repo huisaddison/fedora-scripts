@@ -117,7 +117,7 @@ dconf write /org/yorba/shotwell/preferences/ui/hide-photos-already-imported true
 
 ### firefox tweaks
 ## global extensions
-sudo dnf install -y mozilla-https-everywhere mozilla-noscript
+sudo dnf install -y mozilla-cliget mozilla-https-everywhere mozilla-noscript mozilla-requestpolicy
 ## local settings - set here to survive upgrades and not disturb other user accounts
 # create local profile
 firefox -CreateProfile default >> /dev/null
