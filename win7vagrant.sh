@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+## This script sets up an environment for a Windows 7 VM running under Vagrant.
 
 VAGRANTDIR=$HOME/win7vagrant
 mkdir -p ${VAGRANTDIR}
