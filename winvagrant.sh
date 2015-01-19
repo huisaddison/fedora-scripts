@@ -2,7 +2,7 @@
 #
 ## This script sets up an environment for a Windows 7 VM running under Vagrant.
 
-VAGRANTDIR=$HOME/win7vagrant
+VAGRANTDIR=$HOME/winvagrant
 mkdir -p ${VAGRANTDIR}
 
 ### install Virtualbox and Vinagre (RDP client)
@@ -11,6 +11,12 @@ sudo dnf install -y VirtualBox kmod-VirtualBox vinagre
 ### install vagrant
 sudo dnf install -y http://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1_x86_64.rpm
 
+### read in URL to vagrant box
+echo "Please provide the URL to the hosted vagrant box you wish"
+echo "to use. If you do not yet know the URL, you will have to"
+echo "edit ${VAGRANTDIR}/Vagrantfile to add the URL before use."
+read boxurl
+
 ### plop in Vagrantfile
 echo '# -*- mode: ruby -*-
 # vi: set ft=ruby :
@@ -18,16 +24,15 @@ echo '# -*- mode: ruby -*-
 VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 # Every Vagrant virtual environment requires a box to build off of.
-config.vm.box = "win7-20140822"
-# CHANGME input URL to hosted win7.box
-config.vm.box_url = "CHANGEME"
+config.vm.box = "winbox"
+# CHANGME input URL to hosted win.box
+config.vm.box_url = "${boxurl}"
 config.vm.communicator = "winrm"
 config.vm.network :forwarded_port, host: 3399, guest: 3389
 end' | tee $VAGRANT_DIR/Vagrantfile >> /dev/null
 
 ### done
-echo "Setup nearly complete. Please edit Vagrantfile (CHANGEME), connect to"
-echo "campus ethernet, and run:"
+echo "Setup is complete. Please connect to campus ethernet and run:"
 echo ""
-echo "cd $HOME/win7vagrant && vagrant up && vagrant rdp"
+echo "cd $HOME/winvagrant && vagrant up && vagrant rdp"
 echo ""
