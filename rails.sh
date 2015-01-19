@@ -38,7 +38,7 @@ echo ""
 
 ### install mariadb (mysql)
 echo "Installing MariaDB (SQL)..."
-sudo dnf install mariadb-server
+sudo dnf install mariadb-server mariadb-devel
 echo ""
 
 ### enable mariadb service
