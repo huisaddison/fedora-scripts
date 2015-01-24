@@ -2,14 +2,11 @@
 # for a fresh Fedora 21 Workstation install; do not use on already-in-use systems
 
 ### remove stuff I don't need
-sudo dnf erase -y abrt* bijiben cheese devassistant evolution gnome-boxes gnome-documents java* libreoffice* libvirt* orca qemu* rhythmbox transmission-gtk
+sudo dnf erase -y abrt* bijiben cheese devassistant evolution gnome-boxes gnome-documents java* libvirt* orca qemu* rhythmbox
 
 ### enable moar repos
 sudo dnf copr enable -y dgoerger/firefox-gtk3
-sudo dnf copr enable -y dgoerger/mozilla-extensions-test
-sudo dnf copr enable -y petersen/pandoc
 sudo dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-21.noarch.rpm
-# sadly necessary for broadcom-wl...
 sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-21.noarch.rpm
 
 ### make sure everything's up-to-date
@@ -36,46 +33,24 @@ systemctl --user enable redshift.service
 sudo systemctl enable powertop.service
 
 ### terminal apps
-sudo dnf install -y git lynx pandoc screen transmission-cli vim-enhanced
+sudo dnf install -y git lynx vim-enhanced
 # sane vimrc
 echo 'set nocompatible
 syntax on' | tee $HOME/.vimrc
 # recognize epubs as zips for editing in vim
 echo 'au BufReadCmd   *.epub      call zip#Browse(expand("<amatch>"))' | tee --append $HOME/.vimrc
-# sane screenrc
-echo 'caption always
-termcapinfo xterm*|rxvt*|kterm*|Eterm*|putty*|dtterm* ti@:te@
-defscrollback 20736' | tee $HOME/.screenrc
-# sanitize bash_profile $PATH to disallow ~/bin and ~/.local/bin
-echo '# .bash_profile
-
-# Get the aliases and functions
-if [ -f ~/.bashrc ]; then
-	. ~/.bashrc
-fi
-
-# User specific environment and startup programs' | tee $HOME/.bash_profile
 # set git-config
-git config --global user.email "dgoerger@users.noreply.github.com"
-git config --global user.name "David Goerger"
+git config --global user.email "huisaddison@users.noreply.github.com"
+git config --global user.name "Addison Hu"
 git config --global push.default simple
 git config --global color.ui true
-
-### set up rpmbuild environment
-# per https://fedoraproject.org/wiki/How_to_create_an_RPM_package
-sudo dnf install -y @Development\ Tools
-sudo dnf install -y fedora-packager
-rpmdev-setuptree
 
 ### media libs
 sudo dnf install -y gstreamer1-libav gstreamer1-plugins-ugly gstreamer1-plugins-bad-freeworld \
                     gstreamer1-plugins-bad-free
 
-### spellcheck dictionaries
-sudo dnf install -y hunspell-en hunspell-es hunspell-de hunspell-fr hunspell-nn
-
 ### LaTeX - quite large
-sudo dnf install -y vim-latex vim-latex-doc texlive-collection-basic texlive-collection-fontsextra \
+sudo dnf install -y gummi texlive-collection-basic texlive-collection-fontsextra \
                     texlive-collection-fontsrecommended texlive-collection-langfrench \
                     texlive-collection-langgerman texlive-collection-langspanish \
                     texlive-collection-latexrecommended texlive-luatex texlive-xetex \
@@ -83,7 +58,7 @@ sudo dnf install -y vim-latex vim-latex-doc texlive-collection-basic texlive-col
 
 ### general apps
 # TODO: duplicity instead of deja-dup ?
-sudo dnf install -y calibre deja-dup empathy epiphany firewalld gnome-contacts \
+sudo dnf install -y calibre deja-dup empathy epiphany firewalld gimp gnome-contacts \
                     gnome-music gnome-weather gnumeric keepassx shotwell 
 
 ### GNOME tweaks
@@ -104,8 +79,6 @@ dconf write /org/gnome/terminal/legacy/default-show-menubar false
 # sane trackpad settings
 dconf write /org/gnome/settings-daemon/peripherals/touchpad/natural-scroll true  # Mac-style scrolling
 dconf write /org/gnome/settings-daemon/peripherals/touchpad/tap-to-click true
-# set default indexing for tracker
-dconf write /org/freedesktop/tracker/miner/files/index-recursive-directories "['&DESKTOP', '&DOCUMENTS', '&MUSIC', '&PICTURES', '&VIDEOS']"
 # disable autorun on media insertion
 dconf write /org/gnome/desktop/media-handling/autorun-never true
 
@@ -118,7 +91,7 @@ dconf write /org/yorba/shotwell/preferences/ui/hide-photos-already-imported true
 
 ### firefox tweaks
 ## global extensions
-sudo dnf install -y mozilla-cliget mozilla-https-everywhere mozilla-noscript mozilla-requestpolicy
+sudo dnf install -y mozilla-https-everywhere
 ## local settings - set here to survive upgrades and not disturb other user accounts
 # create local profile
 firefox -CreateProfile default >> /dev/null
@@ -132,11 +105,6 @@ echo 'user_pref("browser.newtabpage.directory.ping", "");' | tee --append ${FFPA
 echo 'user_pref("browser.newtabpage.directory.source", "");' | tee --append ${FFPATH}/prefs.js
 # set DONOTTRACK header
 echo 'user_pref("privacy.donottrackheader.enabled", true);' | tee --append ${FFPATH}/prefs.js
-# set spellcheck language as Canadian English moz#836230
-echo 'user_pref("spellchecker.dictionary", "en_CA");' | tee --append ${FFPATH}/prefs.js
-# sane Firefox NoScript settings
-echo 'user_pref("noscript.global", true);' | tee --append ${FFPATH}/prefs.js
-echo 'user_pref("noscript.ctxMenu", false);' | tee --append ${FFPATH}/prefs.js
 # set userContent.css workaround for moz#70315
 mkdir -p ${FFPATH}/chrome
 echo '/*
@@ -174,17 +142,11 @@ body {
 
 ### set locale
 ## localectl is system-wide? dconf is local
-# set language as Canadian English
-localectl set-locale LANG=en_CA.UTF-8
-dconf write /system/locale/region "'en_CA.UTF-8'"
-# set keyboard as US-Macintosh mapping for sane internationalization
-localectl set-x11-keymap us-mac mac
-dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'us+mac')]"
+# set keyboard as Dvorak mapping for sane internationalization
+localectl set-x11-keymap dvorak
+dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'dvorak')]"
 # automatically adjust time zone per network geo-lookup
 dconf write /org/gnome/desktop/datetime/automatic-timezone true
-
-### games - quite large
-sudo dnf install -y 0ad
 
 ### now reboot to save and load changes
 reboot
