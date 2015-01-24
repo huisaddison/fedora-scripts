@@ -60,6 +60,8 @@ sudo dnf install -y gummi texlive-collection-basic texlive-collection-fontsextra
 # TODO: duplicity instead of deja-dup ?
 sudo dnf install -y calibre deja-dup empathy epiphany firewalld gimp gnome-contacts \
                     gnome-mplayer gnome-music gnome-weather gnumeric keepassx shotwell 
+# Install Chrome
+sudo dnf install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
 ### GNOME tweaks
 sudo dnf install -y gnome-shell-extension-alternate-tab gnome-tweak-tool
