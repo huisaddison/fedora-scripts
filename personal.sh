@@ -13,7 +13,9 @@ sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonf
 sudo dnf upgrade -y
 
 ### install drivers things
-sudo dnf install -y mesa-vdpau-drivers libtxc_dxtn libva-vdpau-driver libvdpau-va-gl powertop redshift
+sudo dnf install -y mesa-vdpau-drivers libtxc_dxtn libva-vdpau-driver libvdpau-va-gl redshift
+# install powertop only if not a desktop
+# sudo dnf install -y powertop
 # set redshift DISPLAY variable to built-in monitor per https://bbs.archlinux.org/viewtopic.php?pid=1447538#p1447538
 mkdir -p $HOME/.config/systemd/user/redshift.service.d
 # use DISPLAY=:1 for second display, :2 for third, etc
@@ -29,8 +31,8 @@ lat=41.31
 lon=-72.923611' | tee $HOME/.config/redshift.conf
 # enable redshift service
 systemctl --user enable redshift.service
-# enable powertop service
-sudo systemctl enable powertop.service
+# enable powertop service - commented out because unnecessary on desktops
+# sudo systemctl enable powertop.service
 
 ### terminal apps
 sudo dnf install -y git lynx vim-enhanced
@@ -50,18 +52,12 @@ sudo dnf install -y gstreamer1-libav gstreamer1-plugins-ugly gstreamer1-plugins-
                     gstreamer1-plugins-bad-free
 
 ### LaTeX - quite large
-sudo dnf install -y gummi texlive-collection-basic texlive-collection-fontsextra \
-                    texlive-collection-fontsrecommended texlive-collection-langfrench \
-                    texlive-collection-langgerman texlive-collection-langspanish \
-                    texlive-collection-latexrecommended texlive-luatex texlive-xetex \
-                    texlive-collection-langgreek texlive-collection-langenglish
+sudo dnf install -y gummi texlive-scheme-full
 
 ### general apps
 # TODO: duplicity instead of deja-dup ?
 sudo dnf install -y calibre deja-dup empathy epiphany firewalld gimp gnome-contacts \
                     gnome-mplayer gnome-music gnome-weather gnumeric keepassx shotwell 
-# Install Chrome
-sudo dnf install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
 ### GNOME tweaks
 sudo dnf install -y gnome-shell-extension-alternate-tab gnome-tweak-tool
