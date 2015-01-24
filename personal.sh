@@ -16,7 +16,7 @@ sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonf
 sudo dnf upgrade -y
 
 ### install drivers things
-sudo dnf install -y broadcom-wl kmod-wl mesa-vdpau-drivers libtxc_dxtn libva-vdpau-driver libvdpau-va-gl powertop redshift
+sudo dnf install -y mesa-vdpau-drivers libtxc_dxtn libva-vdpau-driver libvdpau-va-gl powertop redshift
 # set redshift DISPLAY variable to built-in monitor per https://bbs.archlinux.org/viewtopic.php?pid=1447538#p1447538
 mkdir -p $HOME/.config/systemd/user/redshift.service.d
 # use DISPLAY=:1 for second display, :2 for third, etc
