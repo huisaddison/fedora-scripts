@@ -59,7 +59,7 @@ sudo dnf install -y gummi texlive-collection-basic texlive-collection-fontsextra
 ### general apps
 # TODO: duplicity instead of deja-dup ?
 sudo dnf install -y calibre deja-dup empathy epiphany firewalld gimp gnome-contacts \
-                    gnome-music gnome-weather gnumeric keepassx shotwell 
+                    gnome-mplayer gnome-music gnome-weather gnumeric keepassx shotwell 
 
 ### GNOME tweaks
 sudo dnf install -y gnome-shell-extension-alternate-tab gnome-tweak-tool
