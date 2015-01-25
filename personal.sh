@@ -57,7 +57,7 @@ sudo dnf install -y gummi texlive-scheme-full
 ### general apps
 # TODO: duplicity instead of deja-dup ?
 sudo dnf install -y calibre deja-dup empathy epiphany firewalld gimp gnome-contacts \
-                    gnome-mplayer gnome-music gnome-weather gnumeric keepassx shotwell 
+                    gnome-mplayer gnome-music gnome-weather gnumeric keepassx R shotwell 
 
 ### GNOME tweaks
 sudo dnf install -y gnome-shell-extension-alternate-tab gnome-tweak-tool
@@ -79,6 +79,9 @@ dconf write /org/gnome/settings-daemon/peripherals/touchpad/natural-scroll true 
 dconf write /org/gnome/settings-daemon/peripherals/touchpad/tap-to-click true
 # disable autorun on media insertion
 dconf write /org/gnome/desktop/media-handling/autorun-never true
+# resize GNOME's massive title bar
+sudo sed -i "/title_vertical_pad/s/value=\"[0-9]\{1,2\}\"/value=\"0\"/g" \
+			/usr/share/themes/Adwaita/metacity-1/metacity-theme-3.xml
 
 ### moar dconf tweaks
 # shotwell
@@ -140,9 +143,7 @@ body {
 
 ### set locale
 ## localectl is system-wide? dconf is local
-# set keyboard as Dvorak mapping for sane internationalization
-localectl set-x11-keymap dvorak
-dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'dvorak')]"
+
 # automatically adjust time zone per network geo-lookup
 dconf write /org/gnome/desktop/datetime/automatic-timezone true
 
