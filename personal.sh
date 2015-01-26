@@ -16,6 +16,7 @@ sudo dnf upgrade -y
 sudo dnf install -y mesa-vdpau-drivers libtxc_dxtn libva-vdpau-driver libvdpau-va-gl redshift
 # install powertop only if not a desktop
 # sudo dnf install -y powertop
+
 # set redshift DISPLAY variable to built-in monitor per https://bbs.archlinux.org/viewtopic.php?pid=1447538#p1447538
 mkdir -p $HOME/.config/systemd/user/redshift.service.d
 # use DISPLAY=:1 for second display, :2 for third, etc
@@ -56,8 +57,12 @@ sudo dnf install -y gummi texlive-scheme-full
 
 ### general apps
 # TODO: duplicity instead of deja-dup ?
-sudo dnf install -y calibre deja-dup empathy epiphany firewalld gimp gnome-contacts \
+sudo dnf install -y anki calibre deja-dup empathy epiphany firewalld gimp gnome-contacts \
                     gnome-mplayer gnome-music gnome-weather gnumeric keepassx R shotwell 
+                    
+# Install RStudio
+curl 'http://www.rstudio.com/products/rstudio/download/' | grep Fedora \
+			| grep 64-bit | grep rpm | awk -F'"' '{print $2}' | xargs sudo dnf install -y
 
 ### GNOME tweaks
 sudo dnf install -y gnome-shell-extension-alternate-tab gnome-tweak-tool
