@@ -59,7 +59,14 @@ sudo dnf install -y gummi texlive-scheme-full
 # TODO: duplicity instead of deja-dup ?
 sudo dnf install -y anki calibre deja-dup empathy epiphany firewalld gimp gnome-contacts \
                     gnome-mplayer gnome-music gnome-weather gnumeric keepassx R shotwell 
-                    
+                   
+# Install Chrome
+sudo dnf install -y 'https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm'
+
+# Install Dropbox
+curl 'https://www.dropbox.com/install?os=lnx' | sed 's/\<a/\n/g' | grep 'href="/download' \
+			| grep fedora | grep x86_64 | awk -F'"' '{print "https://www.dropbox.com"$2}'
+
 # Install RStudio
 curl 'http://www.rstudio.com/products/rstudio/download/' | grep Fedora \
 			| grep 64-bit | grep rpm | awk -F'"' '{print $2}' | xargs sudo dnf install -y
