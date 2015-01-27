@@ -13,8 +13,9 @@ sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonf
 sudo dnf upgrade -y
 
 ### install drivers things
+# "qtwebkit" necessary for Anki to run
 sudo dnf install -y exfat-utils fuse-exfat mesa-vdpau-drivers libtxc_dxtn \
-			libva-vdpau-driver libvdpau-va-gl p7zip redshift unrar vlc
+			libva-vdpau-driver libvdpau-va-gl p7zip qtwebkit redshift unrar vlc
 # install powertop only if not a desktop
 # sudo dnf install -y powertop
 
