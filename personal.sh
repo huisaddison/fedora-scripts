@@ -66,7 +66,7 @@ sudo dnf install -y 'https://dl.google.com/linux/direct/google-chrome-stable_cur
 
 # Install Dropbox
 curl 'https://www.dropbox.com/install?os=lnx' | sed 's/\<a/\n/g' | grep 'href="/download' \
-			| grep fedora | grep x86_64 | awk -F'"' '{print "https://www.dropbox.com"$2}'
+			| grep fedora | grep x86_64 | awk -F'"' '{print "https://www.dropbox.com"$2}' | xargs sudo dnf install -y
 
 # Install RStudio
 curl 'http://www.rstudio.com/products/rstudio/download/' | grep Fedora \
