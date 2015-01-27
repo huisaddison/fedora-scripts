@@ -13,7 +13,8 @@ sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonf
 sudo dnf upgrade -y
 
 ### install drivers things
-sudo dnf install -y mesa-vdpau-drivers libtxc_dxtn libva-vdpau-driver libvdpau-va-gl redshift
+sudo dnf install -y exfat-utils fuse-exfat mesa-vdpau-drivers libtxc_dxtn \
+			libva-vdpau-driver libvdpau-va-gl p7zip redshift unrar vlc
 # install powertop only if not a desktop
 # sudo dnf install -y powertop
 
@@ -57,8 +58,8 @@ sudo dnf install -y gummi texlive-scheme-full
 
 ### general apps
 # TODO: duplicity instead of deja-dup ?
-sudo dnf install -y anki calibre deja-dup empathy epiphany firewalld gimp gnome-contacts \
-                    gnome-mplayer gnome-music gnome-weather gnumeric keepass R shotwell 
+sudo dnf install -y anki audacity calibre deja-dup empathy epiphany firewalld gimp gnome-contacts \
+                    gnome-mplayer gnome-music gnome-weather gnumeric keepass R shotwell steam
                    
 # Install Chrome
 sudo dnf install -y 'https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm'
