@@ -24,14 +24,7 @@ mkdir -p $HOME/.config/systemd/user/redshift.service.d
 # use DISPLAY=:1 for second display, :2 for third, etc
 echo '[Service]
 Environment=DISPLAY=:0' | tee $HOME/.config/systemd/user/redshift.service.d/display.conf
-# set redshift location since geoclue lookup relies on Internet which is not initialized in time usually
-echo '; Global settings for redshift
-[redshift]
-location-provider=manual
 
-[manual]
-lat=41.31
-lon=-72.923611' | tee $HOME/.config/redshift.conf
 # enable redshift service
 systemctl --user enable redshift.service
 # enable powertop service - commented out because unnecessary on desktops
@@ -73,9 +66,7 @@ curl 'https://www.dropbox.com/install?os=lnx' | sed 's/\<a/\n/g' | grep 'href="/
 curl 'http://www.rstudio.com/products/rstudio/download/' | grep Fedora \
 			| grep 64-bit | grep rpm | awk -F'"' '{print $2}' | xargs sudo dnf install -y
 			
-# Install Java JDK v8
-curl 'www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html' | grep rpm | grep 'x64.rpm' | awk -F '"' '{print $12}' | xargs sudo dnf install -y
-sudo dnf install -y eclipse
+
 
 ### GNOME tweaks
 sudo dnf install -y gnome-shell-extension-alternate-tab gnome-tweak-tool
