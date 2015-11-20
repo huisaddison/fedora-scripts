@@ -1,8 +1,9 @@
 #!/bin/bash
-# for a fresh Fedora 21 Workstation install; do not use on already-in-use systems
+# for a fresh Fedora 23 Workstation install; do not use on already-in-use systems
 
 ### remove stuff I don't need
-sudo dnf erase -y abrt* bijiben cheese devassistant evolution gnome-boxes gnome-documents java* libvirt* orca qemu* rhythmbox
+sudo dnf erase -y abrt* bijiben cheese devassistant evolution gnome-boxes gnome-documents java* \
+				libvirt* orca qemu* rhythmbox
 
 ### enable moar repos
 sudo dnf copr enable -y dgoerger/firefox-gtk3
@@ -48,12 +49,12 @@ sudo dnf install -y gstreamer1-libav gstreamer1-plugins-ugly gstreamer1-plugins-
                     gstreamer1-plugins-bad-free
 
 ### LaTeX - quite large
-sudo dnf install -y gummi texlive-scheme-full
+sudo dnf install -y gummi texlive-scheme-basic
 
 ### general apps
 # TODO: duplicity instead of deja-dup ?
 sudo dnf install -y anki audacity calibre deja-dup empathy epiphany firewalld gimp gnome-contacts \
-                    gnome-mplayer gnome-music gnome-weather gnumeric keepass R shotwell steam
+                    gnome-mplayer gnome-music gnome-weather gnumeric keepass R shotwell shutter steam
                    
 # Install Chrome
 sudo dnf install -y 'https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm'
@@ -63,9 +64,21 @@ curl 'https://www.dropbox.com/install?os=lnx' | sed 's/\<a/\n/g' | grep 'href="/
 			| grep fedora | grep x86_64 | awk -F'"' '{print "https://www.dropbox.com"$2}' | xargs sudo dnf install -y
 
 # Install RStudio
-curl 'http://www.rstudio.com/products/rstudio/download/' | grep Fedora \
+curl 'https://www.rstudio.com/products/rstudio/download/' | grep Fedora \
 			| grep 64-bit | grep rpm | awk -F'"' '{print $2}' | xargs sudo dnf install -y
+
+# Install WPS Office for Linux
+curl 'http://wps-community.org/downloads' | sed 's/\<span/\n/g' | grep 'x86_64.rpm' -m 1 \
+			| awk -F '"' '{print $2}' | xargs sudo dnf install -y
 			
+# # Install VirtualBox
+# curl 'https://www.virtualbox.org/wiki/Linux_Downloads' | sed 's/\<a/\n/g' | grep 'rpm' \
+# 			| grep 'fedora' | grep 'x86_64' -m 1 | awk -F '"' '{print $4}' | xargs sudo dnf install -y
+
+
+# Install Sublime Text Editor
+# See: https://gist.github.com/simonewebdesign/8507139
+curl -L git.io/sublimetext | sh
 
 
 ### GNOME tweaks
