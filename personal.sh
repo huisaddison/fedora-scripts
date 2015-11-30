@@ -54,7 +54,7 @@ sudo dnf install -y gummi texlive-scheme-basic
 ### general apps
 # TODO: duplicity instead of deja-dup ?
 sudo dnf install -y anki audacity calibre deja-dup empathy epiphany firewalld gimp gnome-contacts \
-                    gnome-mplayer gnome-music gnome-weather gnumeric keepass R shotwell shutter steam
+                    gnome-mplayer gnome-music gnome-weather gnumeric keepass okular R shotwell shutter steam
                    
 # Install Chrome
 sudo dnf install -y 'https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm'
