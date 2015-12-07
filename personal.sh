@@ -48,8 +48,8 @@ git config --global color.ui true
 sudo dnf install -y gstreamer1-libav gstreamer1-plugins-ugly gstreamer1-plugins-bad-freeworld \
                     gstreamer1-plugins-bad-free
 
-### LaTeX - quite large
-sudo dnf install -y gummi texlive-scheme-basic
+### LaTeX
+sudo dnf install -y gummi texlive-scheme-basic texlive-framed texlive-titling
 
 ### general apps
 # TODO: duplicity instead of deja-dup ?
