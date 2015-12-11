@@ -49,7 +49,7 @@ sudo dnf install -y gstreamer1-libav gstreamer1-plugins-ugly gstreamer1-plugins-
                     gstreamer1-plugins-bad-free
 
 ### LaTeX
-sudo dnf install -y gummi texlive-scheme-basic texlive-collection-mathextra texlive-framed texlive-titling
+sudo dnf install -y gummi texlive-scheme-basic texlive-collection-mathextra texlive-framed texlive-titling texlive-units
 
 ### general apps
 # TODO: duplicity instead of deja-dup ?
