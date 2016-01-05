@@ -1,4 +1,7 @@
-Scripts for Fedora 21
+Scripts for Fedora 23
 =====================
 
-These scripts are to help me reinstall my computer quickly should the need arise, with minimal fuss. They're probably not exceedingly useful for anyone else.
+These are just some scripts to make my life easier.
+ - personal.sh: automates customization and software reinstallation after a Fedora reinstallation
+ - flight-cost-monitor.sh: works in conjunction with cron to track airfares of interest (soon to be merged from separate repo)
+ - calibre-fetch-news.sh: works in conjunction with anacron to fetch news and magazines.  Based on a [script by rogeliodh](https://gist.github.com/rogeliodh/1560289)
