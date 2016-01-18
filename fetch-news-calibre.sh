@@ -19,9 +19,9 @@ OUTPROFILE="kindle"
 # A text file with an email per line.
 EMAILSFILE="$USERHOME/news/emails.txt"
 # Email transcript with success/failure for each periodical
-TRANSCRIPT="$USERHOME/news/transcript.txt"
+TRANSCRIPT="$USERHOME/Documents/fedora-scripts/dailydigest.md"
 rm -f $TRANSCRIPT
-echo "Today's meta-periodical:" >> $TRANSCRIPT
+echo "Periodicals successfully sent to Kindle:" >> $TRANSCRIPT
 # Miscellaneous SMTP credentials
 SMTP="smtp.gmail.com"
 PORT="587"
@@ -52,13 +52,13 @@ function fetch_and_send {
 				echo "Sending $OUTFILE to $TO"
 				calibre-smtp --attachment "$OUTFILE" --relay "$SMTP" --port "$PORT" --username "$USERNAME" --password "$PASSWORD"  --encryption-method TLS --subject "$SUBJECTPREFIX ($DATESTR)" "$FROM" "$TO"  "$CONTENTPREFIX ($DATESTR)"
 			    done
-			    echo "$2 successfully sent to your Kindle!" >> $TRANSCRIPT
+			    echo "    * $2" >> $TRANSCRIPT
 			fi	
 		else
-			echo "$2 exceed the email attachment size." >> $TRANSCRIPT
+			echo "    * $2 exceed the email attachment size." >> $TRANSCRIPT
 		fi
 	else
-		echo "$2 recipe failed." >> $TRANSCRIPT
+		echo "    * $2 recipe failed." >> $TRANSCRIPT
 	fi
 	notify-send "$2 daily pull complete!"
 	}
