@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Place this in cron.daily to have the news fetching script run as user
+# This is preferred to simply use of msmtp and so outputted files
+# are not owned by root
+su addison -c "/home/addison/Documents/fedora-scripts/fetch-news-calibre.sh"
+

@@ -2,7 +2,9 @@
 # 
 # Script based largely on https://gist.github.com/rogeliodh/1560289
 
-source ./credentials
+USERHOME="/home/addison"
+
+source /home/addison/Documents/fedora-scripts/credentials
 ## Email credentials kept in source file as this script is kept on github
 ## Source file format:
 # USERNAME="username"
@@ -11,11 +13,15 @@ source ./credentials
 ##
 
 # Directory to store periodicals
-OUTDIR="$HOME/news"
+OUTDIR="$USERHOME/news"
 # Common choices: kindle, kindle_dx, kindle_fire, kobo, ipad, sony
 OUTPROFILE="kindle"
 # A text file with an email per line.
-EMAILSFILE="$HOME/news/emails.txt"
+EMAILSFILE="$USERHOME/news/emails.txt"
+# Email transcript with success/failure for each periodical
+TRANSCRIPT="$USERHOME/news/transcript.txt"
+rm -f $TRANSCRIPT
+echo "Today's meta-periodical:" >> $TRANSCRIPT
 # Miscellaneous SMTP credentials
 SMTP="smtp.gmail.com"
 PORT="587"
@@ -27,7 +33,7 @@ DATESTR=`date "+%Y/%m/%d"`
 
 function fetch_and_send {
 	RECIPE=$1
-	SUBJECTPREFIX=$2
+	SUBJECTPREFIX="News: $2"
 	OUTPUTPREFIX=$3	
 	OUTFILE="${OUTDIR}/${OUTPUTPREFIX}${DATEFILE}.mobi"
 
@@ -38,29 +44,37 @@ function fetch_and_send {
 	ebook-meta -a "$DATESTR" "$OUTFILE"
 
 	# email the files
-	if [ -n "$EMAILSFILE" -a -f "$EMAILSFILE" ]; then
-	    for TO in `cat $EMAILSFILE`; do
-		echo "Sending $OUTFILE to $TO"
-		calibre-smtp --attachment "$OUTFILE" --relay "$SMTP" --port "$PORT" --username "$USERNAME" --password "$PASSWORD"  --encryption-method TLS --subject "$SUBJECTPREFIX ($DATESTR)" "$FROM" "$TO"  "$CONTENTPREFIX ($DATESTR)"
-	    done
+	if [[ -f $OUTFILE ]]; then
+		FILESIZE=$(wc -c $OUTFILE | awk '{print $1}')
+		if [[ $FILESIZE -le 25000000 ]]; then
+			if [ -n "$EMAILSFILE" -a -f "$EMAILSFILE" ]; then
+			    for TO in `cat $EMAILSFILE`; do
+				echo "Sending $OUTFILE to $TO"
+				calibre-smtp --attachment "$OUTFILE" --relay "$SMTP" --port "$PORT" --username "$USERNAME" --password "$PASSWORD"  --encryption-method TLS --subject "$SUBJECTPREFIX ($DATESTR)" "$FROM" "$TO"  "$CONTENTPREFIX ($DATESTR)"
+			    done
+			    echo "$2 successfully sent to your Kindle!" >> $TRANSCRIPT
+			fi	
+		else
+			echo "$2 exceed the email attachment size." >> $TRANSCRIPT
+		fi
+	else
+		echo "$2 recipe failed." >> $TRANSCRIPT
 	fi
-}
+	notify-send "$2 daily pull complete!"
+	}
 
-fetch_and_send "New York Times.recipe" "News: The New York Times" "nyt_"
-notify-send "New York Times daily pull complete!"
+fetch_and_send "New York Times.recipe" "The New York Times" "nyt_"
 
-fetch_and_send "Los Angeles Times.recipe" "News: The Los Angeles Times" "lat_"
-notify-send "Los Angeles Times daily pull complete!"
+fetch_and_send "Los Angeles Times.recipe" "The Los Angeles Times" "lat_"
 
-fetch_and_send "The Washington Post.recipe" "News: The Washington Post" "wp_"
-notify-send "Washington Post daily pull complete!"
+fetch_and_send "The Washington Post.recipe" "The Washington Post" "wp_"
 
-if [ $(date +%u) == 5 ]; then
-	fetch_and_send "The Economist.recipe" "News: The Economist" "economist_"
-	notify-send "The Economist weekly pull complete!"
+if [[ $(date +%u) == 5 ]]; then
+	fetch_and_send "The Economist.recipe" "The Economist" "economist_"
 fi
 
-if [ $(date +%d) == 01 ]; then
-	fetch_and_send "The Atlantic.recipe" "News: The Atlantic" "atlantic_"
-	notify-send "The Atlantic monthly pull complete!"
+if [[ $(date +%d) == 01 ]]; then
+	fetch_and_send "The Atlantic.recipe" "The Atlantic" "atlantic_"
 fi
+
+cat $TRANSCRIPT | mail -s "Daily Update" huisaddison@gmail.com
