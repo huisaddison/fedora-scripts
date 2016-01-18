@@ -31,7 +31,7 @@ def writeSlifka(f):
 	foodlist = tree.xpath('//strong/text()')
 	writeBullets(f, foodlist)
 
-with open("dailydigest.md", "w") as f:
+with open("/home/addison/Documents/fedora-scripts/dailydigest.md", "w") as f:
 	writeTitle(f, "Today's Menus")
 	writeMenu(f, "http://www.yaledining.org/menu.cfm?mDH=9", "Timothy Dwight")
 	writeMenu(f, "http://www.yaledining.org/menu.cfm?mDH=11", "Commons")
