@@ -14,9 +14,9 @@ def writeTitle(f, title):
 def writeSubHeading(f, subhead):
 	f.write('== ' + subhead + ' ==\n')
 
-def writeImage(f, source, filename):
-	subprocess.call(["sh", "imgscrape-allrecipes.sh", source, filename + ".jpeg"])
-	subprocess.call(["cp", filename + ".jpeg", "/home/addison/Dropbox/wiki/images/"])
+def writeImage(f, source, filepath, filename):
+	subprocess.call(["sh", "imgscrape-allrecipes.sh", source, filepath + filename + ".jpeg"])
+	subprocess.call(["cp", filepath + filename + ".jpeg", "/home/addison/Dropbox/wiki/images/"])
 	f.write("{{images/" + filename + ".jpeg}}\n")
 
 def writeBullets(f, bulList):
@@ -27,30 +27,31 @@ def writeNumbered(f, numList):
 	for item in numList:
 		f.write("    # " + item + "\n")
 
-def writeTime(f, timeNames, timeNums):
+def writeTime(f, timenames, timenums):
 	f.write("    * Time required:\n")
-	for i in range(len(timeNames)):
-		f.write("        - " + timeNames[i] + ": " + timeNums[i] + " m\n")
+	for i in range(len(timenames)):
+		f.write("        - " + timenames[i] + ": " + timenums[i] + " m\n")
 
 def writeSource(f, source):
 	f.write("[[" + source + " |Source.]]\n")
 
 
 title       = tree.xpath('//h1[@class="recipe-summary__h1"]/text()')[0]
-filename    = "/home/addison/Documents/recipes/" + title.replace(' ', '-').lower()
+filepath  = "/home/addison/Documents/recipes/"
+filename    = title.replace(' ', '-').lower()
 servings    = tree.xpath('//p[@class="subtext"]/text()')
-timeNames   = tree.xpath('//p[@class="prepTime__item--type"]/text()')
-timeNums    = tree.xpath('//span[@class="prepTime__item--time"]/text()')
+timenames   = tree.xpath('//p[@class="prepTime__item--type"]/text()')
+timenums    = tree.xpath('//span[@class="prepTime__item--time"]/text()')
 ingredients = tree.xpath('//span[@class="recipe-ingred_txt added"]/text()')
 directions  = tree.xpath('//span[@class="recipe-directions__list--item"]/text()')
 
-with open(filename + ".md", 'w') as f:
+with open(filepath + filename + ".md", 'w') as f:
 	writeTitle(f, title)
 	f.write("\n")
-	writeImage(f, source, filename)
+	writeImage(f, source, filepath, filename)
 	f.write("\n")
 	writeSubHeading(f, "Preliminaries")
-	writeTime(f, timeNames, timeNums)
+	writeTime(f, timenames, timenums)
 	writeBullets(f, servings)
 	f.write("\n")
 	writeSubHeading(f, "Ingredients")
