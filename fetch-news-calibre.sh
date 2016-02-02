@@ -20,7 +20,6 @@ OUTPROFILE="kindle"
 EMAILSFILE="$USERHOME/news/emails.txt"
 # Email transcript with success/failure for each periodical
 TRANSCRIPT="$USERHOME/Documents/fedora-scripts/dailydigest.md"
-rm -f $TRANSCRIPT
 echo "Periodicals successfully sent to Kindle:" >> $TRANSCRIPT
 # Miscellaneous SMTP credentials
 SMTP="smtp.gmail.com"
@@ -78,3 +77,5 @@ if [[ $(date +%d) == 01 ]]; then
 fi
 
 cat $TRANSCRIPT | mail -s "Daily Update" huisaddison@gmail.com
+calibre-smtp --relay "$SMTP" --port "$PORT" --username "$USERNAME" --password "$PASSWORD"  --encryption-method TLS --subject "Daily Update" "$FROM" "huisaddison@gmail.com"  "$TRANSCRIPT"
+rm -f $TRANSCRIPT
