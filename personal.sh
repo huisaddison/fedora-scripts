@@ -9,6 +9,7 @@ sudo dnf erase -y abrt* bijiben cheese devassistant evolution gnome-boxes gnome-
 sudo dnf copr enable -y dgoerger/firefox-gtk3
 sudo dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-21.noarch.rpm
 sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-21.noarch.rpm
+sudo dnf config-manager --add-repo=http://negativo17.org/repos/fedora-spotify.repo
 
 ### make sure everything's up-to-date
 sudo dnf upgrade -y
@@ -55,7 +56,7 @@ sudo dnf install -y gummi texlive-scheme-basic texlive-collection-mathextra texl
 ### general apps
 # TODO: duplicity instead of deja-dup ?
 sudo dnf install -y anki audacity calibre deja-dup empathy epiphany firewalld gimp gnome-contacts \
-                    gnome-mplayer gnome-music gnome-weather gnumeric keepassx okular R shotwell shutter steam
+                    gnome-mplayer gnome-music gnome-weather gnumeric keepassx okular R shotwell shutter spotify-client steam
                    
 # Install Chrome
 sudo dnf install -y 'https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm'
