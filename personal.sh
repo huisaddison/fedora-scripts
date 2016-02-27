@@ -33,12 +33,24 @@ systemctl --user enable redshift.service
 # sudo systemctl enable powertop.service
 
 ### terminal apps
-sudo dnf install -y git lynx vim-enhanced
+sudo dnf install -y git lynx powerline vim-enhanced tmux tmux-powerline vim-plugin-powerline
 # sane vimrc
-echo 'set nocompatible
-syntax on' | tee $HOME/.vimrc
-# recognize epubs as zips for editing in vim
-echo 'au BufReadCmd   *.epub      call zip#Browse(expand("<amatch>"))' | tee --append $HOME/.vimrc
+echo 'installing vim run commands...'
+cat vimrc > $HOME/.vimrc
+echo 'done!'
+
+# custom bash stuff
+echo 'installing bash run commands...'
+cat bashrc > $HOME/.bashrc
+echo 'done!'
+
+# tmux configuration
+echo 'source "/usr/share/tmux/powerline.conf"' | tee $HOME/.tmux.conf
+
+# Pathogen plugin manager for vim
+mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+
 # set git-config
 git config --global user.email "huisaddison@users.noreply.github.com"
 git config --global user.name "Addison Hu"
@@ -50,13 +62,14 @@ sudo dnf install -y gstreamer1-libav gstreamer1-plugins-ugly gstreamer1-plugins-
                     gstreamer1-plugins-bad-free
 
 ### LaTeX
-sudo dnf install -y gummi texlive-scheme-basic texlive-collection-mathextra texlive-algorithm2e texlive-bbm texlive-bbm-macros \
-		    texlive-doublestroke texlive-framed texlive-titling texlive-units
+sudo dnf install -y texlive-scheme-basic texlive-collection-mathextra texlive-algorithm2e texlive-bbm texlive-bbm-macros \
+		    texlive-doublestroke texlive-framed texlive-titling texlive-units texlive-changepage
 
 ### general apps
 # TODO: duplicity instead of deja-dup ?
 sudo dnf install -y anki audacity calibre deja-dup empathy epiphany firewalld gimp gnome-contacts \
-                    gnome-mplayer gnome-music gnome-weather gnumeric keepassx okular R shotwell shutter spotify-client steam
+                    gnome-mplayer gnome-music gnome-weather gnumeric keepassx okular \
+                    R shotwell shutter spotify-client steam 
                    
 # Install Chrome
 sudo dnf install -y 'https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm'
