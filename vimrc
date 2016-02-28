@@ -130,13 +130,13 @@ set laststatus=2
 set t_Co=256
 
 
-" Ensure that vim is started with dark background for base161616161616
+" Ensure that vim is started with dark background for base16
 set background=dark
 
 " Select the solarized cholar scheme
-colorscheme base16-solarized
+colorscheme base16-flat
 
 " Ensure that the background is transparent
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
-
+highlight MatchParen cterm=none ctermbg=gray ctermfg=blue
