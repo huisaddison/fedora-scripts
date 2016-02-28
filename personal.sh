@@ -44,12 +44,18 @@ echo 'installing bash run commands...'
 cat bashrc > $HOME/.bashrc
 echo 'done!'
 
+mkdir $HOME/repos
+mkdir $HOME/repos/base16-gnome-terminal
+git clone https://github.com/chriskempson/base16-gnome-terminal $HOME/repos/base16-gnome-terminal
+
 # tmux configuration
 echo 'source "/usr/share/tmux/powerline.conf"' | tee $HOME/.tmux.conf
 
 # Pathogen plugin manager for vim
 mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+mkdir ~/.vim/bundle/base16-vim
+git clone https://github.com/chriskempson/base16-vim.git ~/.vim/bundle/base16-vim
 
 # set git-config
 git config --global user.email "huisaddison@users.noreply.github.com"

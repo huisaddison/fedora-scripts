@@ -128,3 +128,15 @@ python powerline_setup()
 python del powerline_setup
 set laststatus=2
 set t_Co=256
+
+
+" Ensure that vim is started with dark background for base161616161616
+set background=dark
+
+" Select the solarized cholar scheme
+colorscheme base16-solarized
+
+" Ensure that the background is transparent
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+
