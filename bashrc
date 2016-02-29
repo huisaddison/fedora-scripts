@@ -17,4 +17,19 @@ if [ -f `which powerline-daemon` ]; then
   . /usr/share/powerline/bash/powerline.sh
 fi
 
+# Aliases that make my life easier
 alias gogo='gnome-open'
+alias python='python3'
+
+# Custom clip function that pastes from a file to clipboard
+# very useful because vim cannot access the system clipboard
+customclip() {
+    if [ "$#" -eq 1 ]; then
+        cat $1 | sed -n 'p' | xclip -selection clipboard
+    elif [ "$#" -eq 2 ]; then
+        cat $1 | sed -n "$2 p" | xclip -selection clipboard
+    elif [ "$#" -eq 3 ]; then
+        cat $1 | sed -n "$2, $3 p" | xclip -selection clipboard
+    fi
+}
+alias cclip=customclip 

@@ -56,6 +56,7 @@ mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 mkdir ~/.vim/bundle/base16-vim
 git clone https://github.com/chriskempson/base16-vim.git ~/.vim/bundle/base16-vim
+git clone https://github.com/vimwiki/vimwiki.git ~/.vim/bundle/vimwiki
 
 # set git-config
 git config --global user.email "huisaddison@users.noreply.github.com"
