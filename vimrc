@@ -114,12 +114,14 @@ let g:vimwiki_list = [{
     \ 'template_default': 'default',
     \ 'template_ext': '.html'}]
   
-set tabstop=4     " Set TAB width to 4 spaces
+let tabsize = 2
 
-set shiftwidth=4  " Set indent width to 4
-
-set softtabstop=4 " Set number of columns for a TAB
-
+" Set TAB width
+execute "set tabstop=".tabsize
+" Set indent width
+execute "set shiftwidth=".tabsize
+" Set number of columns for a TAB
+execute "set softtabstop=".tabsize
 set expandtab     " Expand TABs to spaces
 
 " Install powerline, a pretty and useful status bar!
@@ -133,10 +135,10 @@ set t_Co=256
 " Ensure that vim is started with dark background for base16
 set background=dark
 
-" Select the solarized cholar scheme
-colorscheme base16-flat
+" Select the color scheme
+colorscheme base16-ocean
 
 " Ensure that the background is transparent
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
-highlight MatchParen cterm=none ctermbg=gray ctermfg=blue
+highlight MatchParen cterm=none ctermbg=gray ctermfg=white
