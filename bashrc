@@ -20,6 +20,12 @@ fi
 # Aliases that make my life easier
 alias gogo='gnome-open'
 alias python='python3'
+alias lion='ssh ah729@lion.zoo.cs.yale.edu'
+alias supersubmit='ssh ah729@lion.zoo.cs.yale.edu "sh autosubmit.sh"'
+alias green='ssh addison@green.student.yale.internal'
+alias lb='ls -B'
+alias hours='python /c/cs223/autocount.py'
+alias autolog='python /c/cs223/autotrack.py'
 
 # Custom clip function that pastes from a file to clipboard
 # very useful because vim cannot access the system clipboard
@@ -33,3 +39,9 @@ customclip() {
     fi
 }
 alias cclip=customclip 
+
+
+# added by Anaconda3 2.5.0 installer
+export PATH="/home/addison/anaconda3/bin:$PATH"
+
+

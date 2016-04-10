@@ -39,6 +39,9 @@ set incsearch		" do incremental searching
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
+" use - for deleting word to reduce strain on middle finger
+map - daw
+
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
@@ -114,7 +117,7 @@ let g:vimwiki_list = [{
     \ 'template_default': 'default',
     \ 'template_ext': '.html'}]
   
-let tabsize = 2
+let tabsize = 4
 
 " Set TAB width
 execute "set tabstop=".tabsize
@@ -142,3 +145,4 @@ colorscheme base16-ocean
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
 highlight MatchParen cterm=none ctermbg=gray ctermfg=white
+
