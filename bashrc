@@ -41,7 +41,3 @@ customclip() {
 alias cclip=customclip 
 
 
-# added by Anaconda3 2.5.0 installer
-export PATH="/home/addison/anaconda3/bin:$PATH"
-
-
