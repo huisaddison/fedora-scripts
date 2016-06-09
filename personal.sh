@@ -109,9 +109,6 @@ sudo dnf install -y gnome-shell-extension-alternate-tab gnome-tweak-tool
 mkdir -p $HOME/.config/gtk-3.0
 echo '[Settings]
 gtk-application-prefer-dark-theme=1' | tee $HOME/.config/gtk-3.0/settings.ini
-# enable the alternate-tab extension we just installed
-# sets alt-tab on windows, not applications
-dconf write /org/gnome/shell/enabled-extensions "['alternate-tab@gnome-shell-extensions.gcampax.github.com']"
 # display date in top bar of Shell
 dconf write /org/gnome/desktop/interface/clock-show-date true
 # set Terminal dark theme. is this redundant? dark seems the default in 3.14?
@@ -123,6 +120,8 @@ dconf write /org/gnome/settings-daemon/peripherals/touchpad/natural-scroll true 
 dconf write /org/gnome/settings-daemon/peripherals/touchpad/tap-to-click true
 # disable autorun on media insertion
 dconf write /org/gnome/desktop/media-handling/autorun-never true
+# swap control and caps lock keys
+dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:swapcaps']"
 # resize GNOME's massive title bar
 sudo sed -i "/title_vertical_pad/s/value=\"[0-9]\{1,2\}\"/value=\"0\"/g" \
 			/usr/share/themes/Adwaita/metacity-1/metacity-theme-3.xml
