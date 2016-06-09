@@ -111,8 +111,12 @@ echo '[Settings]
 gtk-application-prefer-dark-theme=1' | tee $HOME/.config/gtk-3.0/settings.ini
 # display date in top bar of Shell
 dconf write /org/gnome/desktop/interface/clock-show-date true
-# set Terminal dark theme. is this redundant? dark seems the default in 3.14?
-#dconf write /org/gnome/terminal/legacy/dark-theme true
+# set alt tab to switch applications
+dconf write /org/gnome/desktop/wm/keybindings/switch-applications \
+    "['<Alt>Tab']"
+# set super tab to switch within application groups
+dconf write /org/gnome/desktop/wm/keybindings/switch-group \
+    "['<Super>Tab']"
 # hide Terminal menu bar
 dconf write /org/gnome/terminal/legacy/default-show-menubar false
 # sane trackpad settings
