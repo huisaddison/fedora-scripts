@@ -38,6 +38,9 @@ echo 'installing vim run commands...'
 cat vimrc > $HOME/.vimrc
 echo 'done!'
 
+# install powerline for vim
+sudo pip install powerline-status
+
 # custom bash stuff
 echo 'installing bash run commands...'
 cat bashrc > $HOME/.bashrc
@@ -121,6 +124,12 @@ dconf write /org/yorba/shotwell/preferences/files/commit-metadata true
 dconf write /org/yorba/shotwell/preferences/files/use-lowercase-filenames true
 dconf write /org/yorba/shotwell/preferences/ui/use-24-hour-time true
 dconf write /org/yorba/shotwell/preferences/ui/hide-photos-already-imported true
+
+# shortcut for gnome-terminal
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding "'<Primary><Alt>t'"
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command "'gnome-terminal'"
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name "'Terminal'"
+
 
 ### firefox tweaks
 ## global extensions
