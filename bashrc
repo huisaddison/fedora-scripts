@@ -26,6 +26,8 @@ alias green='ssh addison@green.student.yale.internal'
 alias lb='ls -B'
 alias hours='python /c/cs223/autocount.py'
 alias autolog='python /c/cs223/autotrack.py'
+alias aaron='ssh -X addison@40.117.239.180'
+alias jpydock='ssh -NL 8888:localhost:9998 addison@40.117.239.180'
 
 # Custom clip function that pastes from a file to clipboard
 # very useful because vim cannot access the system clipboard
@@ -40,4 +42,18 @@ customclip() {
 }
 alias cclip=customclip 
 
+scc() {
+    if dconf read /org/gnome/desktop/input-sources/xkb-options \
+                    | grep -q "swapcaps"; then
+        dconf write /org/gnome/desktop/input-sources/xkb-options "@as []"
+    else 
+        dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:swapcaps']"
+    fi
+}
 
+aws() {
+    ssh -i /home/addison/aws_keypairs/kp1.pem ubuntu@$1
+}
+
+PATH=$PATH:/usr/local/share/scala/bin
+PATH=$PATH:/usr/local/share/idea/bin

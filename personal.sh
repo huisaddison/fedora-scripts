@@ -1,8 +1,8 @@
 #!/bin/bash
-# for a fresh Fedora 23 Workstation install; do not use on already-in-use systems
+# for a fresh Fedora 24 Workstation install; do not use on already-in-use systems
 
 ### remove stuff I don't need
-sudo dnf erase -y abrt* bijiben cheese devassistant evolution gnome-boxes gnome-documents java* \
+sudo dnf erase -y abrt* bijiben cheese devassistant evolution gnome-boxes gnome-documents \
 				libvirt* orca qemu* rhythmbox
 
 ### enable moar repos
@@ -15,9 +15,8 @@ sudo dnf config-manager --add-repo=http://negativo17.org/repos/fedora-spotify.re
 sudo dnf upgrade -y
 
 ### install drivers things
-# "qtwebkit" necessary for Anki to run
 sudo dnf install -y exfat-utils fuse-exfat mesa-vdpau-drivers libtxc_dxtn \
-			libva-vdpau-driver libvdpau-va-gl p7zip qtwebkit redshift unrar vlc
+			libva-vdpau-driver libvdpau-va-gl p7zip redshift unrar vlc
 # install powertop only if not a desktop
 # sudo dnf install -y powertop
 
@@ -74,9 +73,9 @@ sudo dnf install -y texlive-scheme-basic texlive-collection-mathextra texlive-al
 
 ### general apps
 # TODO: duplicity instead of deja-dup ?
-sudo dnf install -y anki audacity calibre deja-dup empathy epiphany firewalld gimp gnome-contacts \
+sudo dnf install -y audacity calibre deja-dup empathy epiphany firewalld gimp gnome-contacts \
                     gnome-mplayer gnome-music gnome-weather gnumeric keepassx okular \
-                    R shotwell shutter spotify-client steam 
+                    R shotwell shutter spotify-client 
                    
 # Install Chrome
 sudo dnf install -y 'https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm'
@@ -88,20 +87,6 @@ curl 'https://www.dropbox.com/install?os=lnx' | sed 's/\<a/\n/g' | grep 'href="/
 # Install RStudio
 curl 'https://www.rstudio.com/products/rstudio/download/' | grep Fedora \
 			| grep 64-bit | grep rpm | awk -F'"' '{print $2}' | xargs sudo dnf install -y
-
-# Install WPS Office for Linux
-curl 'http://wps-community.org/downloads' | sed 's/\<span/\n/g' | grep 'x86_64.rpm' -m 1 \
-			| awk -F '"' '{print $2}' | xargs sudo dnf install -y
-			
-# # Install VirtualBox
-# curl 'https://www.virtualbox.org/wiki/Linux_Downloads' | sed 's/\<a/\n/g' | grep 'rpm' \
-# 			| grep 'fedora' | grep 'x86_64' -m 1 | awk -F '"' '{print $4}' | xargs sudo dnf install -y
-
-
-# Install Sublime Text Editor
-# See: https://gist.github.com/simonewebdesign/8507139
-curl -L git.io/sublimetext | sh
-
 
 ### GNOME tweaks
 sudo dnf install -y gnome-shell-extension-alternate-tab gnome-tweak-tool
