@@ -4,7 +4,7 @@
 
 USERHOME="/home/addison"
 
-source /home/addison/Documents/fedora-scripts/credentials
+source /home/addison/repos/fedora-scripts/credentials
 ## Email credentials kept in source file as this script is kept on github
 ## Source file format:
 # USERNAME="username"
