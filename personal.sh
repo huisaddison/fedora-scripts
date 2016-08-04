@@ -75,9 +75,9 @@ sudo dnf install -y texlive-scheme-basic texlive-collection-mathextra texlive-al
 
 ### general apps
 # TODO: duplicity instead of deja-dup ?
-sudo dnf install -y audacity calibre deja-dup empathy epiphany firewalld gimp gnome-contacts \
-                    gnome-music gnome-weather gnumeric keepassx okular powretop \
-                    R shotwell shutter spotify-client 
+sudo dnf install -y audacity calibre deja-dup epiphany firewalld gimp gnome-contacts \
+                    gnome-music gnome-weather gnumeric keepassx okular powertop \
+                    R shutter spotify-client 
                    
 # Install Chrome
 sudo dnf install -y 'https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm'
