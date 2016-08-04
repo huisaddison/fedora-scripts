@@ -6,9 +6,8 @@ sudo dnf erase -y abrt* bijiben cheese devassistant evolution gnome-boxes gnome-
 				libvirt* orca qemu* rhythmbox
 
 ### enable moar repos
-sudo dnf copr enable -y dgoerger/firefox-gtk3
-sudo dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-21.noarch.rpm
-sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-21.noarch.rpm
+sudo dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-24.noarch.rpm
+sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-24.noarch.rpm
 sudo dnf config-manager --add-repo=http://negativo17.org/repos/fedora-spotify.repo
 
 ### make sure everything's up-to-date
