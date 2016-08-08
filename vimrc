@@ -27,6 +27,7 @@ if has("vms")
 else
   set backup		" keep a backup file (restore to previous version)
   set undofile		" keep an undo file (undo changes after closing)
+  set undodir=$HOME/.vim/undo//
 endif
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
@@ -35,6 +36,9 @@ set incsearch		" do incremental searching
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
+
+" Store backups in separate directory to avoid cluttering workspaces
+set backupdir=$HOME/.vim/backup//
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -117,7 +121,7 @@ let g:vimwiki_list = [{
     \ 'template_default': 'default',
     \ 'template_ext': '.html'}]
   
-let tabsize = 2
+let tabsize = 4
 
 " Set TAB width
 execute "set tabstop=".tabsize

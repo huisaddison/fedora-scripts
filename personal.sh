@@ -53,11 +53,16 @@ git clone https://github.com/chriskempson/base16-gnome-terminal $HOME/repos/base
 echo 'source "/usr/share/tmux/powerline.conf"' | tee $HOME/.tmux.conf
 
 # Pathogen plugin manager for vim
-mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-mkdir ~/.vim/bundle/base16-vim
-git clone https://github.com/chriskempson/base16-vim.git ~/.vim/bundle/base16-vim
-git clone https://github.com/vimwiki/vimwiki.git ~/.vim/bundle/vimwiki
+mkdir -p $HOME/.vim/autoload $HOME/.vim/bundle && \
+curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+mkdir $HOME/.vim/bundle/base16-vim
+git clone https://github.com/chriskempson/base16-vim.git $HOME/.vim/bundle/base16-vim
+git clone https://github.com/vimwiki/vimwiki.git $HOME/.vim/bundle/vimwiki
+
+# setup misc directorys for vim
+mkdir $HOME/.vim/backup
+mkdir $HOME/.vim/undo
+
 
 # set git-config
 git config --global user.email "huisaddison@users.noreply.github.com"
@@ -77,7 +82,7 @@ sudo dnf install -y texlive-scheme-basic texlive-collection-mathextra texlive-al
 # TODO: duplicity instead of deja-dup ?
 sudo dnf install -y audacity calibre deja-dup epiphany firewalld gimp gnome-contacts \
                     gnome-music gnome-weather gnumeric keepassx okular powertop \
-                    R shutter spotify-client 
+                    R shotwell shutter spotify-client 
                    
 # Install Chrome
 sudo dnf install -y 'https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm'
