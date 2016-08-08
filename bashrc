@@ -20,6 +20,7 @@ fi
 # Aliases that make my life easier
 alias gogo='gnome-open'
 alias python='python3'
+alias pip='pip3'
 alias lion='ssh ah729@lion.zoo.cs.yale.edu'
 alias supersubmit='ssh ah729@lion.zoo.cs.yale.edu "sh autosubmit.sh"'
 alias green='ssh addison@green.student.yale.internal'
@@ -57,3 +58,4 @@ aws() {
 
 PATH=$PATH:/usr/local/share/scala/bin
 PATH=$PATH:/usr/local/share/idea/bin
+PATH=$PATH:$HOME/utils/bin

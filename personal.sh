@@ -59,10 +59,14 @@ mkdir $HOME/.vim/bundle/base16-vim
 git clone https://github.com/chriskempson/base16-vim.git $HOME/.vim/bundle/base16-vim
 git clone https://github.com/vimwiki/vimwiki.git $HOME/.vim/bundle/vimwiki
 
-# setup misc directorys for vim
+# setup misc directory for vim
 mkdir $HOME/.vim/backup
 mkdir $HOME/.vim/undo
 
+# setup directories for personal utils
+mkdir $HOME/utils
+mkdir $HOME/utils/bin
+mkdir $HOME/utils/python
 
 # set git-config
 git config --global user.email "huisaddison@users.noreply.github.com"
