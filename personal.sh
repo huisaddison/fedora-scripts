@@ -31,7 +31,8 @@ systemctl --user enable redshift.service
 # sudo systemctl enable powertop.service
 
 ### terminal apps
-sudo dnf install -y git lynx powerline vim-enhanced tmux tmux-powerline vim-plugin-powerline xclip
+sudo dnf install -y git gdb lynx powerline vim-enhanced tmux tmux-powerline \
+    valgrind vim-plugin-powerline xclip
 # sane vimrc
 echo 'installing vim run commands...'
 cat vimrc > $HOME/.vimrc
