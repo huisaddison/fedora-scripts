@@ -151,3 +151,9 @@ highlight NonText ctermbg=none
 highlight MatchParen cterm=none ctermbg=gray ctermfg=white
 highlight LineNr term=bold cterm=NONE ctermfg=white  ctermbg=blue gui=NONE guifg=DarkGrey guibg=NONE
 highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
+
+" Compile current file as markdown
+command Cm w | !md %
+
+" Compile current file as LaTex
+command Cl w | !pdflatex %
