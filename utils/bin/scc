@@ -1,0 +1,8 @@
+#! /bin/bash
+
+if dconf read /org/gnome/desktop/input-sources/xkb-options \
+                | grep -q "swapcaps"; then
+    dconf write /org/gnome/desktop/input-sources/xkb-options "@as []"
+else 
+    dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:swapcaps']"
+fi
