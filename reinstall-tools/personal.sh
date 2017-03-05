@@ -59,6 +59,7 @@ curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 mkdir $HOME/.vim/bundle/base16-vim
 git clone https://github.com/chriskempson/base16-vim.git $HOME/.vim/bundle/base16-vim
 git clone https://github.com/vimwiki/vimwiki.git $HOME/.vim/bundle/vimwiki
+git clone https://github.com/LaTeX-Box-Team/LaTeX-Box.git $HOME/.vim/bundle/LaTeX-Box
 
 # setup misc directory for vim
 mkdir $HOME/.vim/backup
