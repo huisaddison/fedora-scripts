@@ -6,8 +6,8 @@ sudo dnf erase -y abrt* bijiben cheese devassistant evolution gnome-boxes gnome-
 				libvirt* orca qemu* rhythmbox
 
 ### enable moar repos
-sudo dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-24.noarch.rpm
-sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-24.noarch.rpm
+sudo dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-29.noarch.rpm
+sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-29.noarch.rpm
 sudo dnf config-manager --add-repo=http://negativo17.org/repos/fedora-spotify.repo
 
 ### make sure everything's up-to-date
@@ -15,18 +15,10 @@ sudo dnf upgrade -y
 
 ### install drivers things
 sudo dnf install -y exfat-utils fuse-exfat mesa-vdpau-drivers libtxc_dxtn \
-			libva-vdpau-driver libvdpau-va-gl p7zip redshift unrar vlc
+			libva-vdpau-driver libvdpau-va-gl p7zip unrar vlc
 # install powertop only if not a desktop
 # sudo dnf install -y powertop
 
-# set redshift DISPLAY variable to built-in monitor per https://bbs.archlinux.org/viewtopic.php?pid=1447538#p1447538
-mkdir -p $HOME/.config/systemd/user/redshift.service.d
-# use DISPLAY=:1 for second display, :2 for third, etc
-echo '[Service]
-Environment=DISPLAY=:0' | tee $HOME/.config/systemd/user/redshift.service.d/display.conf
-
-# enable redshift service
-systemctl --user enable redshift.service
 # enable powertop service - commented out because unnecessary on desktops
 # sudo systemctl enable powertop.service
 
