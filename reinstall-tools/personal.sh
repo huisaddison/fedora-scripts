@@ -40,7 +40,7 @@ echo 'done!'
 
 mkdir $HOME/repos
 mkdir $HOME/repos/base16-gnome-terminal
-git clone https://github.com/chriskempson/base16-gnome-terminal $HOME/repos/base16-gnome-terminal
+git clone https://github.com/aaron-williamson/base16-gnome-terminal $HOME/repos/base16-gnome-terminal
 
 # tmux configuration
 echo 'source "/usr/share/tmux/powerline.conf"' | tee $HOME/.tmux.conf
@@ -152,6 +152,9 @@ echo 'user_pref("browser.newtabpage.directory.source", "");' | tee --append ${FF
 echo 'user_pref("privacy.donottrackheader.enabled", true);' | tee --append ${FFPATH}/prefs.js
 # set userContent.css workaround for moz#70315
 mkdir -p ${FFPATH}/chrome
+: <<'END'
+# This has been giving me problems.  I don't think these problems exist anymore, and this fix
+# only creates a problem.
 echo '/*
  * * Use this css file to eliminate problems in Firefox
  * * when using dark themes that create dark on dark
@@ -184,6 +187,7 @@ body {
 	margin: 8px;
 	-moz-appearance: none !important;
 }' | tee ${FFPATH}/chrome/userContent.css
+END
 
 ### set locale
 ## localectl is system-wide? dconf is local
