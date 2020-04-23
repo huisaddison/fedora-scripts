@@ -18,17 +18,9 @@ if [ -f `which powerline-daemon` ]; then
 fi
 
 # Aliases that make my life easier
-alias gogo='gnome-open'
+alias open='gnome-open'
 alias python='python3'
 alias pip='pip3'
-alias lion='ssh ah729@lion.zoo.cs.yale.edu'
-alias supersubmit='ssh ah729@lion.zoo.cs.yale.edu "sh autosubmit.sh"'
-alias green='ssh addison@green.student.yale.internal'
-alias lb='ls -B'
-alias hours='python /c/cs223/autocount.py'
-alias autolog='python /c/cs223/autotrack.py'
-alias aaron='ssh -X addison@40.117.239.180'
-alias jpydock='ssh -NL 8888:localhost:9998 addison@40.117.239.180'
 
 # Custom clip function that pastes from a file to clipboard
 # very useful because vim cannot access the system clipboard
@@ -56,6 +48,4 @@ aws() {
     ssh -i /home/addison/aws_keypairs/kp1.pem ubuntu@$1
 }
 
-PATH=$PATH:/usr/local/share/scala/bin
-PATH=$PATH:/usr/local/share/idea/bin
 PATH=$PATH:$HOME/utils/bin
