@@ -8,7 +8,6 @@ sudo dnf erase -y abrt* bijiben cheese devassistant evolution gnome-boxes gnome-
 ### enable moar repos
 sudo dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-31.noarch.rpm
 sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-31.noarch.rpm
-sudo dnf config-manager --add-repo=http://negativo17.org/repos/fedora-spotify.repo
 
 ### make sure everything's up-to-date
 sudo dnf upgrade -y
@@ -44,8 +43,7 @@ echo 'source "/usr/share/tmux/powerline.conf"' | tee $HOME/.tmux.conf
 # Pathogen plugin manager for vim
 mkdir -p $HOME/.vim/autoload $HOME/.vim/bundle && \
 curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-mkdir $HOME/.vim/bundle/base16-vim
-git clone https://github.com/chriskempson/base16-vim.git $HOME/.vim/bundle/base16-vim
+mkdir $HOME/.vim/bundle/
 git clone https://github.com/vimwiki/vimwiki.git $HOME/.vim/bundle/vimwiki
 git clone https://github.com/LaTeX-Box-Team/LaTeX-Box.git $HOME/.vim/bundle/LaTeX-Box
 
@@ -76,20 +74,20 @@ sudo dnf install -y texlive-scheme-basic texlive-collection-mathextra texlive-al
 sudo dnf install -y texlive-blkarray texlive-lastpage texlive-xetex texlive-xltxtra texlive-libertine
 
 ### general apps
-# TODO: duplicity instead of deja-dup ?
 sudo dnf install -y calibre deja-dup firewalld gimp \
                     keepassx \
-                    R shotwell spotify-client \
-                    chromium
+                    R shotwell \
+                    chromium \
+                    snapd
+
+
+# dropbox
+cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+$HOME/.dropbox-dist/dropboxd
+
+# spotify
+sudo snap install spotify
                    
-# Install Dropbox
-curl 'https://www.dropbox.com/install?os=lnx' | sed 's/\<a/\n/g' | grep 'href="/download' \
-			| grep fedora | grep x86_64 | awk -F'"' '{print "https://www.dropbox.com"$2}' | xargs sudo dnf install -y
-
-# Install RStudio
-curl 'https://www.rstudio.com/products/rstudio/download/' | grep Fedora \
-			| grep 64-bit | grep rpm | awk -F'"' '{print $2}' | xargs sudo dnf install -y
-
 ### GNOME tweaks
 # TODO: Make sure this stuff actually does anything
 sudo dnf install -y gnome-shell-extension-alternate-tab gnome-tweak-tool
