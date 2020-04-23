@@ -17,10 +17,6 @@ sudo dnf upgrade -y
 sudo dnf install -y exfat-utils fuse-exfat mesa-vdpau-drivers libtxc_dxtn \
 			libva-vdpau-driver libvdpau-va-gl p7zip unrar vlc
 # install powertop only if not a desktop
-# sudo dnf install -y powertop
-
-# enable powertop service - commented out because unnecessary on desktops
-# sudo systemctl enable powertop.service
 
 ### terminal apps
 sudo dnf install -y git gdb lynx powerline vim-enhanced tmux tmux-powerline \
@@ -82,7 +78,7 @@ sudo dnf install -y texlive-blkarray texlive-lastpage texlive-xetex texlive-xltx
 ### general apps
 # TODO: duplicity instead of deja-dup ?
 sudo dnf install -y calibre deja-dup firewalld gimp \
-                    keepassx powertop \
+                    keepassx \
                     R shotwell spotify-client \
                     chromium
                    
