@@ -6,8 +6,8 @@ sudo dnf erase -y abrt* bijiben cheese devassistant evolution gnome-boxes gnome-
 				libvirt* orca qemu* rhythmbox
 
 ### enable moar repos
-sudo dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-29.noarch.rpm
-sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-29.noarch.rpm
+sudo dnf install -y http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-31.noarch.rpm
+sudo dnf install -y http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-31.noarch.rpm
 sudo dnf config-manager --add-repo=http://negativo17.org/repos/fedora-spotify.repo
 
 ### make sure everything's up-to-date
@@ -81,9 +81,9 @@ sudo dnf install -y texlive-blkarray texlive-lastpage texlive-xetex texlive-xltx
 
 ### general apps
 # TODO: duplicity instead of deja-dup ?
-sudo dnf install -y audacity calibre deja-dup epiphany firewalld gimp gnome-contacts \
-                    gnome-music gnome-weather gnumeric keepassx okular powertop \
-                    R shotwell shutter spotify-client \
+sudo dnf install -y calibre deja-dup firewalld gimp \
+                    keepassx powertop \
+                    R shotwell spotify-client \
                     chromium
                    
 # Install Dropbox
@@ -95,6 +95,7 @@ curl 'https://www.rstudio.com/products/rstudio/download/' | grep Fedora \
 			| grep 64-bit | grep rpm | awk -F'"' '{print $2}' | xargs sudo dnf install -y
 
 ### GNOME tweaks
+# TODO: Make sure this stuff actually does anything
 sudo dnf install -y gnome-shell-extension-alternate-tab gnome-tweak-tool
 # set global gtk3 dark theme
 mkdir -p $HOME/.config/gtk-3.0
@@ -121,7 +122,7 @@ dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:swapcaps']"
 sudo sed -i "/title_vertical_pad/s/value=\"[0-9]\{1,2\}\"/value=\"0\"/g" \
 			/usr/share/themes/Adwaita/metacity-1/metacity-theme-3.xml
 
-### moar dconf tweaks
+### dconf tweaks
 # shotwell
 dconf write /org/yorba/shotwell/preferences/files/commit-metadata true
 dconf write /org/yorba/shotwell/preferences/files/use-lowercase-filenames true
@@ -152,42 +153,6 @@ echo 'user_pref("browser.newtabpage.directory.source", "");' | tee --append ${FF
 echo 'user_pref("privacy.donottrackheader.enabled", true);' | tee --append ${FFPATH}/prefs.js
 # set userContent.css workaround for moz#70315
 mkdir -p ${FFPATH}/chrome
-: <<'END'
-# This has been giving me problems.  I don't think these problems exist anymore, and this fix
-# only creates a problem.
-echo '/*
- * * Use this css file to eliminate problems in Firefox
- * * when using dark themes that create dark on dark
- * * input boxes, selection menus and buttons. Put this
- * * in the ../firefox/default/chrome folder or your
- * * individual user firefox profile chrome folder.
- * */
-input {
-//	border: 2px inset white;
-	background-color: white;
-	color: black;
-	-moz-appearance: none !important;
-}
-textarea {
-//	border: 2px inset white;
-	background-color: white;
-	color: black;
-	-moz-appearance: none !important;
-}
-select {
-	border: 2px inset white;
-	background-color: white;
-	color: black;
-	-moz-appearance: none !important;
-}
-body {
-	background-color: white;
-	color: black;
-	display: block;
-	margin: 8px;
-	-moz-appearance: none !important;
-}' | tee ${FFPATH}/chrome/userContent.css
-END
 
 ### set locale
 ## localectl is system-wide? dconf is local
