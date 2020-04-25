@@ -151,3 +151,4 @@ command Cm w | !md %
 
 " Compile current file as LaTex
 command Cl w | !pdflatex %
+inoremap jj <ESC>
