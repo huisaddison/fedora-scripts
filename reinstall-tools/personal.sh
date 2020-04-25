@@ -81,7 +81,11 @@ sudo dnf install -y calibre deja-dup firewalld gimp \
                     R shotwell \
                     chromium \
                     snapd \
-                    gnome-tweaks \
+                    gnome-tweaks 
+
+
+
+curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo bash
 
 
 ## TODO: pip install python apps
