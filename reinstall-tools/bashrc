@@ -21,6 +21,8 @@ fi
 alias open='gnome-open'
 alias python='python3'
 alias pip='pip3'
+alias condapy='source /home/addison/anaconda3/bin/activate'
+alias peppercorn='mosh peppercorn.andrew.cmu.edu'
 
 # Custom clip function that pastes from a file to clipboard
 # very useful because vim cannot access the system clipboard
@@ -47,5 +49,10 @@ scc() {
 aws() {
     ssh -i /home/addison/aws_keypairs/kp1.pem ubuntu@$1
 }
+hydra() {
+    ssh ahu2@hydra$1.stat.cmu.edu
+}
+
 
 PATH=$PATH:$HOME/utils/bin
+PATH=$PATH:$HOME/.local/bin

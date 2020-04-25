@@ -139,12 +139,6 @@ set laststatus=2
 set t_Co=256
 
 
-" Ensure that vim is started with dark background for base16
-set background=dark
-
-" Select the color scheme
-colorscheme base16-ocean
-
 " Ensure that the background is transparent
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
