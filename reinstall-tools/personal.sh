@@ -46,7 +46,7 @@ mkdir -p $HOME/.vim/autoload $HOME/.vim/bundle && \
 curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 mkdir $HOME/.vim/bundle/
 git clone https://github.com/vimwiki/vimwiki.git $HOME/.vim/bundle/vimwiki
-git clone https://github.com/LaTeX-Box-Team/LaTeX-Box.git $HOME/.vim/bundle/LaTeX-Box
+git clone https://github.com/lervag/vimtex.git $HOME/.vim./bundle/vimtex
 
 # setup misc directory for vim
 mkdir $HOME/.vim/backup
@@ -70,7 +70,7 @@ sudo dnf install -y gstreamer1-libav gstreamer1-plugins-ugly gstreamer1-plugins-
 ### LaTeX
 sudo dnf install -y texlive-scheme-basic texlive-collection-mathextra texlive-algorithm2e texlive-bbm texlive-bbm-macros \
 		    texlive-doublestroke texlive-framed texlive-titling texlive-units texlive-changepage texlive-tabu \
-            texlive-datetime
+            texlive-datetime latexmk
 
 ## Some More LaTeX for making slides
 sudo dnf install -y texlive-blkarray texlive-lastpage texlive-xetex texlive-xltxtra texlive-libertine
