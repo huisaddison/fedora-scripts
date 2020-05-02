@@ -34,8 +34,6 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
 
 " Store backups in separate directory to avoid cluttering workspaces
 set backupdir=$HOME/.vim/backup//
@@ -138,7 +136,12 @@ python3 del powerline_setup
 set laststatus=2
 set t_Co=256
 
+" Juypytext format: percent
 let g:jupytext_fmt = 'py:percent'
+
+" Set background to dark
+" https://unix.stackexchange.com/questions/348771/why-do-vim-colors-look-different-inside-and-outside-of-tmux
+set background=dark
 
 
 " Ensure that the background is transparent
