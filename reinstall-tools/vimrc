@@ -139,6 +139,9 @@ set t_Co=256
 " Juypytext format: percent
 let g:jupytext_fmt = 'py:percent'
 
+" Interpret all tex files as latex
+let g:tex_flavor = "latex"
+
 " Set background to dark
 " https://unix.stackexchange.com/questions/348771/why-do-vim-colors-look-different-inside-and-outside-of-tmux
 set background=dark
