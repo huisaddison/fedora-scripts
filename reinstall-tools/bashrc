@@ -46,9 +46,9 @@ scc() {
     fi
 }
 
-aws() {
-    ssh -i /home/addison/aws_keypairs/kp1.pem ubuntu@$1
-}
+# aws() {
+#     ssh -i /home/addison/aws_keypairs/kp1.pem ubuntu@$1
+# }
 hydra() {
     ssh ahu2@hydra$1.stat.cmu.edu
 }
