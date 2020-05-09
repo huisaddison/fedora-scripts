@@ -70,7 +70,7 @@ sudo dnf install -y gstreamer1-libav gstreamer1-plugins-ugly gstreamer1-plugins-
 ### LaTeX
 sudo dnf install -y texlive-scheme-basic texlive-collection-mathextra texlive-algorithm2e texlive-bbm texlive-bbm-macros \
 		    texlive-doublestroke texlive-framed texlive-titling texlive-units texlive-changepage texlive-tabu \
-            texlive-datetime texlive-moderncls latexmk
+            texlive-datetime texlive-moderncv latexmk
 
 ## Some More LaTeX for making slides
 sudo dnf install -y texlive-blkarray texlive-lastpage texlive-xetex texlive-xltxtra texlive-libertine
