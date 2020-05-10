@@ -5,7 +5,7 @@
 sudo dnf erase -y abrt* bijiben cheese devassistant evolution gnome-boxes gnome-documents \
 				libvirt* orca qemu* rhythmbox
 
-### enable moar repos
+### enable more
 sudo dnf install \
 https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
 https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
@@ -47,10 +47,17 @@ curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 mkdir $HOME/.vim/bundle/
 git clone https://github.com/vimwiki/vimwiki.git $HOME/.vim/bundle/vimwiki
 git clone https://github.com/lervag/vimtex.git $HOME/.vim./bundle/vimtex
+git clone https://github.com/SirVer/ultisnips.git $HOME/.vim/bundle/ultisnips
+git clone https://github.com/honza/vim-snippets.git $HOME/.vim/bundle/vim-snippets
+
 
 # setup misc directory for vim
 mkdir $HOME/.vim/backup
 mkdir $HOME/.vim/undo
+mkdir $HOME/.vim/plugin
+
+wget https://raw.githubusercontent.com/goerz/jupytext.vim/master/plugin/jupytext.vim \
+    -P $HOME/.vim/plugin
 
 # setup directories for personal utils
 mkdir $HOME/utils
