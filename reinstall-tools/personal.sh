@@ -1,5 +1,5 @@
 #!/bin/bash
-# for a fresh Fedora 24 Workstation install; do not use on already-in-use systems
+# for a fresh Fedora Workstation install; do not use on already-in-use systems
 
 ### remove stuff I don't need
 sudo dnf erase -y abrt* bijiben cheese devassistant evolution gnome-boxes gnome-documents \
@@ -84,11 +84,15 @@ sudo dnf install -y calibre deja-dup firewalld gimp \
                     gnome-tweaks 
 
 
-
+# git lfs
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo bash
 
 
 ## TODO: pip install python apps
+
+
+
+sudo dnf install -y openssl-devel libcurl-devel libxml2-devel
 
 
 # dropbox
@@ -134,9 +138,11 @@ dconf write /org/yorba/shotwell/preferences/ui/use-24-hour-time true
 dconf write /org/yorba/shotwell/preferences/ui/hide-photos-already-imported true
 
 # shortcut for gnome-terminal
-dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding "'<Primary><Alt>t'"
-dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command "'gnome-terminal'"
-dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name "'Terminal'"
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings\
+    "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Terminal'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'gnome-terminal'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Ctrl><Alt>t' 
 
 
 ### firefox tweaks
