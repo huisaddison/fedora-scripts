@@ -89,6 +89,7 @@ curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.s
 
 
 ## TODO: pip install python apps
+pip3 install --user numpy pandas scipy jupyter jupytext h5py pickle
 
 
 
