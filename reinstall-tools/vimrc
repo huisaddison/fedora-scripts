@@ -119,7 +119,7 @@ let g:vimwiki_list = [{
     \ 'template_default': 'default',
     \ 'template_ext': '.html'}]
   
-let tabsize = 4
+let tabsize = 2
 
 " Set TAB width
 execute "set tabstop=".tabsize
