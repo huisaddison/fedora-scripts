@@ -46,7 +46,7 @@ mkdir -p $HOME/.vim/autoload $HOME/.vim/bundle && \
 curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 mkdir $HOME/.vim/bundle/
 git clone https://github.com/vimwiki/vimwiki.git $HOME/.vim/bundle/vimwiki
-git clone https://github.com/lervag/vimtex.git $HOME/.vim./bundle/vimtex
+git clone https://github.com/lervag/vimtex.git $HOME/.vim/bundle/vimtex
 git clone https://github.com/SirVer/ultisnips.git $HOME/.vim/bundle/ultisnips
 git clone https://github.com/honza/vim-snippets.git $HOME/.vim/bundle/vim-snippets
 
