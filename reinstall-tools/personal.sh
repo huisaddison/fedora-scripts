@@ -18,27 +18,27 @@ sudo dnf install -y exfat-utils fuse-exfat mesa-vdpau-drivers libtxc_dxtn \
 			libva-vdpau-driver libvdpau-va-gl p7zip unrar vlc
 
 ### terminal apps
-sudo dnf install -y git gdb lynx powerline vim-enhanced tmux tmux-powerline \
-    valgrind vim-plugin-powerline xclip
+sudo dnf install -y git gdb lynx powerline vim-enhanced tmux \
+    valgrind xclip
 # sane vimrc
 echo 'installing vim run commands...'
-cat vimrc > $HOME/.vimrc
+ln -sf .vimrc $HOME/.vimrc
 echo 'done!'
 
 # install powerline for vim
 sudo pip install powerline-status
 
+ln -sf .tmux.conf $HOME/.tmux.conf
+
 # update bashrc
 echo 'installing bash run commands...'
-cat bashrc > $HOME/.bashrc
+cat .bashrc > $HOME/.bashrc
 echo 'done!'
 
 mkdir $HOME/repos
 mkdir $HOME/repos/base16-gnome-terminal
 git clone https://github.com/aaron-williamson/base16-gnome-terminal $HOME/repos/base16-gnome-terminal
 
-# tmux configuration
-echo 'source "/usr/share/tmux/powerline.conf"' | tee $HOME/.tmux.conf
 
 # Pathogen plugin manager for vim
 mkdir -p $HOME/.vim/autoload $HOME/.vim/bundle && \
