@@ -5,7 +5,7 @@
 sudo dnf erase -y abrt* bijiben cheese devassistant evolution gnome-boxes gnome-documents \
 				libvirt* orca qemu* rhythmbox
 
-### enable more
+### enable more stuff
 sudo dnf install \
 https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
 https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
@@ -13,10 +13,9 @@ https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -
 ### make sure everything's up-to-date
 sudo dnf upgrade -y
 
-### install drivers things
+### install drivers, etc.
 sudo dnf install -y exfat-utils fuse-exfat mesa-vdpau-drivers libtxc_dxtn \
 			libva-vdpau-driver libvdpau-va-gl p7zip unrar vlc
-# install powertop only if not a desktop
 
 ### terminal apps
 sudo dnf install -y git gdb lynx powerline vim-enhanced tmux tmux-powerline \
@@ -29,7 +28,7 @@ echo 'done!'
 # install powerline for vim
 sudo pip install powerline-status
 
-# custom bash stuff
+# update bashrc
 echo 'installing bash run commands...'
 cat bashrc > $HOME/.bashrc
 echo 'done!'
@@ -48,7 +47,8 @@ mkdir $HOME/.vim/bundle/
 git clone https://github.com/vimwiki/vimwiki.git $HOME/.vim/bundle/vimwiki
 git clone https://github.com/lervag/vimtex.git $HOME/.vim/bundle/vimtex
 git clone https://github.com/SirVer/ultisnips.git $HOME/.vim/bundle/ultisnips
-git clone https://github.com/honza/vim-snippets.git $HOME/.vim/bundle/vim-snippets
+git clone https://github.com/huisaddison/vim-snippets.git $HOME/.vim/bundle/vim-snippets
+git clone https://github.com/jpalardy/vim-slime $HOME/.vim/bundle/vim-slime
 
 
 # setup misc directory for vim
@@ -70,7 +70,7 @@ git config --global user.name "Addison Hu"
 git config --global push.default simple
 git config --global color.ui true
 
-### media libs
+### media libraries
 sudo dnf install -y gstreamer1-libav gstreamer1-plugins-ugly gstreamer1-plugins-bad-freeworld \
                     gstreamer1-plugins-bad-free
 
@@ -83,7 +83,7 @@ sudo dnf install -y texlive-scheme-basic texlive-collection-mathextra texlive-al
 sudo dnf install -y texlive-blkarray texlive-lastpage texlive-xetex texlive-xltxtra texlive-libertine
 
 ### general apps
-sudo dnf install -y calibre deja-dup firewalld gimp \
+sudo dnf install -y calibre firewalld gimp \
                     keepassx \
                     R shotwell \
                     chromium \
@@ -98,10 +98,7 @@ curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.s
 ## TODO: pip install python apps
 pip3 install --user numpy pandas scipy jupyter jupytext h5py pickle
 
-
-
 sudo dnf install -y openssl-devel libcurl-devel libxml2-devel
-
 
 # spotify
 sudo snap install spotify

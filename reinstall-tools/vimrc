@@ -114,6 +114,14 @@ execute pathogen#infect()
 
 " Install vimwiki; depends on Pathogen
 let g:vimwiki_list = [{
+    \ 'path': '$HOME/Dropbox/wiki_research',
+    \ 'template_path': '$HOME/Dropbox/wiki_research/templates',
+    \ 'template_default': 'default',
+    \ 'template_ext': '.html'},{
+    \ 'path': '$HOME/Dropbox/wiki_personal',
+    \ 'template_path': '$HOME/Dropbox/wiki_personal/templates',
+    \ 'template_default': 'default',
+    \ 'template_ext': '.html'},{
     \ 'path': '$HOME/Dropbox/wiki',
     \ 'template_path': '$HOME/Dropbox/wiki/templates',
     \ 'template_default': 'default',
